@@ -5,7 +5,7 @@ import { Provider } from 'mobx-react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import stores from './store';
+import stores from './stores';
 
 ReactDOM.render((
   <Provider {...stores}>

@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 
-class ViewStore {
+class View {
   @observable isShowModal = false;
 
   @action hideModal = () => {
@@ -12,4 +12,4 @@ class ViewStore {
   }
 }
 
-export default new ViewStore();
+export default new View();
