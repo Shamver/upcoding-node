@@ -5,11 +5,11 @@ class View {
 
   @action hideModal = () => {
     this.isShowModal = false;
-  }
+  };
 
   @action showModal = () => {
     this.isShowModal = true;
-  }
+  };
 }
 
 export default new View();
