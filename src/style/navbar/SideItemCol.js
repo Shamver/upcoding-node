@@ -8,7 +8,7 @@ const SideItemCol = styled(rs.Col)`
     padding: 0;
     
     @media only screen and (max-width: 1200px){
-        opacity: ${props => (props.toggled == 'true' ? 100 : 0)}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 100 : 0)}
         transition: opacity 0.2s;
         transition-delay: 0.08s;
     }
