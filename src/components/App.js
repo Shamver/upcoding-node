@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import * as fa from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import Header from './layout/Header';
 import Home from './content/home/Home';
 import Navbar from './navbar/Navbar';
@@ -11,7 +12,6 @@ import Code from './content/code/Code';
 import RightIconSpan from '../style/navbar/RightIconSpan';
 import TextSpan from '../style/navbar/TextSpan';
 import ListGroup from '../style/navbar/ListGroup';
-import {inject, observer} from "mobx-react";
 
 const NavbarStyled = styled.div`
     position: fixed !important;
@@ -21,12 +21,12 @@ const NavbarStyled = styled.div`
     transition: width 0.3s;
     
     @media only screen and (max-width: 1199px) {
-        width: ${({ toggled }) => (toggled === 'true' ? '250px' : '0px')};
-        overflow: ${({ toggled }) => (toggled === 'true' ? 'auto' : 'hidden')};
+        width: ${({ toggled }) => (toggled === true ? '250px' : '0px')};
+        overflow: ${({ toggled }) => (toggled === true ? 'auto' : 'hidden')};
     }
     
     @media only screen and (min-width: 1200px) {
-        width: ${({ toggled }) => (toggled === 'true' ? '64px' : '250px')};
+        width: ${({ toggled }) => (toggled === true ? '64px' : '250px')};
         &:hover {
             width: 250px;
         }
@@ -60,7 +60,7 @@ const MainComponent = styled.div`
     }
     
     @media only screen and (min-width: 1200px) {
-        padding-left: ${({ toggled }) => (toggled === 'true' ? '70px' : '250px')} !important;
+        padding-left: ${({ toggled }) => (toggled === true ? '70px' : '250px')} !important;
     }
     transition: all 0.3s;
 `;
@@ -73,7 +73,7 @@ const MainWrapper = styled.div`
     height : 100%;
 `;
 
-@inject('HeaderA')
+@inject('HeaderStore')
 @withRouter
 @observer
 class App extends React.Component {
@@ -120,7 +120,7 @@ class App extends React.Component {
     render() {
       let toggled = false;
       let icon = null;
-      const { isToggleSidebar } = this.props.HeaderA;
+      const { isToggleSidebar } = this.props.HeaderStore;
       console.log(isToggleSidebar);
       if (isToggleSidebar) {
         toggled = true;
@@ -138,19 +138,11 @@ class App extends React.Component {
           <Route
             path="/"
             render={() => (
-              <Header
-                // onToggleDropDown={this.onToggleDropDown}
-                // messageToggle={dropDownToggle.Message}
-                // notiToggle={dropDownToggle.Notification}
-                // profileToggle={dropDownToggle.Profile}
-                // onToggleSidebar={this.onToggleSidebar}
-                icon={icon}
-              />
-
+              <Header icon={icon} />
             )}
           />
           <NavbarStyled
-            toggled={toggled.toString()}
+            toggled={toggled}
           >
             <Navbar
               menus={[

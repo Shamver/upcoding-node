@@ -7,6 +7,7 @@ import * as fa from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as mu from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import avatar from '../../../resources/images/avatar.jpg';
 
 const DropdownMenuAni = styled(DropdownMenu)`
@@ -74,7 +75,6 @@ const MenuButtonCircle = styled(mu.ListItem)`
     font-family : inherit;
     
 `;
-
 
 const DropDownItemHeader = styled(DropdownItem)`
     padding : 8px 26px;
@@ -160,58 +160,70 @@ const BadgeA = styled(Badge)`
     border-radius : 10rem;
 `;
 
-const Profile = ({ toggleYN, toggle }) => (
-  <DropdownInline isOpen={toggleYN} toggle={toggle}>
-    <DropdownToggleCustom>
-      <MenuButtonCircle button>
-        <ProfileImg src={avatar} />
-      </MenuButtonCircle>
-    </DropdownToggleCustom>
-    <DropdownMenuAni right>
-      <DropDownItemHeader>
-        <ImgDiv className="media-img">
-          <Img src={avatar} alt="" />
-        </ImgDiv>
-        <Info>
-          <Name>
-                            배진영
-          </Name>
-          <SubMessage>Front-End 개발자</SubMessage>
-        </Info>
-      </DropDownItemHeader>
-      <DropDownItemCustom>
-        <CustomInner>
-          <MenuIcon icon={fa.faCog} />
-                        &nbsp;&nbsp;설정
-        </CustomInner>
-      </DropDownItemCustom>
-      <DropDownItemCustom>
-        <CustomInner>
-          <MenuIcon icon={fa.faUser} />
-                        &nbsp;&nbsp;프로필
-        </CustomInner>
-      </DropDownItemCustom>
-      <DropDownItemCustom>
-        <CustomInner>
-          <MenuIcon icon={fa.faEnvelope} />
-                        &nbsp;&nbsp;메일
-                        &nbsp;&nbsp;
-          <BadgeA>2</BadgeA>
-        </CustomInner>
-      </DropDownItemCustom>
-      <DropDownItemCustom>
-        <CustomInner>
-          <MenuIcon icon={fa.faSignOutAlt} />
-                        &nbsp;&nbsp;로그아웃
-        </CustomInner>
-      </DropDownItemCustom>
-    </DropdownMenuAni>
-  </DropdownInline>
-);
+const Profile = ({ HeaderStore }) => {
+  const { isProfileToggle } = HeaderStore.dropDownToggle;
+  return (
+    <DropdownInline isOpen={isProfileToggle} toggle={HeaderStore.onToggleDropDownProfile}>
+      <DropdownToggleCustom>
+        <MenuButtonCircle button>
+          <ProfileImg src={avatar} />
+        </MenuButtonCircle>
+      </DropdownToggleCustom>
+      <DropdownMenuAni right>
+        <DropDownItemHeader>
+          <ImgDiv className="media-img">
+            <Img src={avatar} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+                        배진영
+            </Name>
+            <SubMessage>Front-End 개발자</SubMessage>
+          </Info>
+        </DropDownItemHeader>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={fa.faCog} />
+                    &nbsp;&nbsp;설정
+          </CustomInner>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={fa.faUser} />
+                    &nbsp;&nbsp;프로필
+          </CustomInner>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={fa.faEnvelope} />
+                    &nbsp;&nbsp;메일
+                    &nbsp;&nbsp;
 
+            {' '}
+            <BadgeA>2</BadgeA>
+          </CustomInner>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={fa.faSignOutAlt} />
+                    &nbsp;&nbsp;로그아웃
+          </CustomInner>
+        </DropDownItemCustom>
+      </DropdownMenuAni>
+    </DropdownInline>
+  );
+};
 Profile.propTypes = {
-  toggleYN: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+  HeaderStore: PropTypes.shape({
+    onToggleDropDownProfile: PropTypes.func.isRequired,
+    dropDownToggle: PropTypes.shape({
+      isProfileToggle: PropTypes.bool.isRequired,
+    }),
+  }),
 };
 
-export default Profile;
+Profile.defaultProps = {
+  HeaderStore: null,
+};
+
+export default inject('HeaderStore')(observer(Profile));

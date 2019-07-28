@@ -52,14 +52,14 @@ const CollapseButton = styled(mu.ListItem)`
 const LeftIconSpan = styled.span`
     display: inline-block;
     height: 20px;
-    width: ${({ toggled }) => (toggled === 'true' ? '35px' : '24px')};
+    width: ${({ toggled }) => (toggled === true ? '35px' : '24px')};
     line-height: 25px;
     text-align: center;
     position: relative;
     transition: all 0.3s;
     left: 0;
     font-size: 18px;
-    padding-right: ${({ toggled }) => (toggled === 'true' ? '2px' : '0')};
+    padding-right: ${({ toggled }) => (toggled === true ? '2px' : '0')};
     margin-right: 14px;
 `;
 

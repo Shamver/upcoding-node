@@ -24,14 +24,14 @@ const LeftIconSpan = styled.span`
     vertical-align : sub;
     display: inline-block;
     height: 20px;
-    width: ${({ toggled }) => (toggled === 'true' ? '35px' : '24px')};
+    width: ${({ toggled }) => (toggled === true ? '35px' : '24px')};
     line-height: 25px;
     text-align: center;
     position: relative;
     transition: all 0.3s;
     left: 0;
     font-size: 18px;
-    padding-right: ${({ toggled }) => (toggled === 'true' ? '2px' : '0')};
+    padding-right: ${({ toggled }) => (toggled === true ? '2px' : '0')};
     margin-right: 14px;
 `;
 
@@ -78,7 +78,7 @@ const CollapseButton = styled(mu.ListItem)`
 const Navbar = (props) => {
   const {
     menus, selectedCollapse, selectedSidebar,
-    onSelectCollapse, onSelectSidebar, HeaderA,
+    onSelectCollapse, onSelectSidebar, HeaderStore,
   } = props;
   const items = menus.map(data => (
     <NavItem
@@ -90,7 +90,7 @@ const Navbar = (props) => {
       selectedSidebar={selectedSidebar}
       onSelectCollapse={onSelectCollapse}
       onSelectSidebar={onSelectSidebar}
-      isToggleSidebar={HeaderA.isToggleSidebar}
+      isToggleSidebar={HeaderStore.isToggleSidebar}
     />
   ));
   const isOpen = selectedCollapse === 'home';
@@ -101,7 +101,7 @@ const Navbar = (props) => {
         <NavRow>
           <NavBody xs="12">
             <rs.Row>
-              <SideItemCol toggled={HeaderA.isToggleSidebar} xs={12}>
+              <SideItemCol toggled={HeaderStore.isToggleSidebar} xs={12}>
                 <CollapseButton
                   button
                   className={isOpen ? 'active' : ''}
@@ -110,11 +110,11 @@ const Navbar = (props) => {
                 >
                   <LeftIconSpan
                     name="home"
-                    toggled={HeaderA.isToggleSidebar}
+                    toggled={HeaderStore.isToggleSidebar}
                   >
                     <LeftIcon icon={fa.faHome} name="home" />
                   </LeftIconSpan>
-                  <TextSpan toggled={HeaderA.isToggleSidebar} name="home">홈</TextSpan>
+                  <TextSpan toggled={HeaderStore.isToggleSidebar} name="home">홈</TextSpan>
                 </CollapseButton>
               </SideItemCol>
               {items}
@@ -133,10 +133,10 @@ Navbar.propTypes = {
   selectedSidebar: PropTypes.string.isRequired,
   onSelectCollapse: PropTypes.func.isRequired,
   onSelectSidebar: PropTypes.func.isRequired,
-  HeaderA: PropTypes.shape({
+  HeaderStore: PropTypes.shape({
     isToggleSidebar: PropTypes.bool.isRequired,
   }).isRequired,
 };
 
 
-export default inject('HeaderA')(observer(Navbar));
+export default inject('HeaderStore')(observer(Navbar));

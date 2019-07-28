@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as fa from '@fortawesome/free-solid-svg-icons';
 import * as mu from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import logo from '../../resources/images/shamver_upcoding.png';
 import logoText from '../../resources/images/LOGO.png';
 import Message from './dropdown/Message';
 import Notification from './dropdown/Notification';
 import Profile from './dropdown/Profile';
-import {inject, observer} from "mobx-react";
 
 const LogoImage = styled.img`
     width : 40px;
@@ -155,72 +155,58 @@ const MenuIconCustomWrapper = styled.div`
     display : block;
 `;
 
-@inject('HeaderA')
-@observer
-class Header extends React.Component {
-  static propTypes = {
-    icon: PropTypes.shape({
-    }).isRequired,
-    HeaderA: PropTypes.shape({
-      onToggleSidebar: PropTypes.func.isRequired,
-      messageToggle: PropTypes.bool.isRequired,
-      notiToggle: PropTypes.bool.isRequired,
-      profileToggle: PropTypes.bool.isRequired,
-    }).isRequired,
-  };
-
-  render() {
-    const { icon, HeaderA } = this.props;
-    return (
-      <SectionHeader>
-        <AllLogoWrapper>
-          <LogoWrapper>
-            <LogoImage src={logo} />
-          </LogoWrapper>
-          <LogoTextWrapper>
-            <LogoTextImage src={logoText} />
-          </LogoTextWrapper>
-
-        </AllLogoWrapper>
+const Header = ({ icon, HeaderStore }) => (
+  <SectionHeader>
+    <AllLogoWrapper>
+      <LogoWrapper>
+        <LogoImage src={logo} />
+      </LogoWrapper>
+      <LogoTextWrapper>
+        <LogoTextImage src={logoText} />
+      </LogoTextWrapper>
+    </AllLogoWrapper>
+    <CollapseButton>
+      <MenuButtonCircle button onClick={HeaderStore.onToggleSidebar}>
+        <MenuIconCustomWrapper>
+          <MenuIconCustom icon={icon} />
+        </MenuIconCustomWrapper>
+      </MenuButtonCircle>
+    </CollapseButton>
+    <LeftNav>
+      <SearchBoxList>
+        <SearchBox placeholder="검색할 키워드를 입력해주세요.." />
+        <SearchIcon icon={fa.faSearch} />
+      </SearchBoxList>
+      <List>
         <CollapseButton>
-          <MenuButtonCircle button onClick={HeaderA.onToggleSidebar}>
-            <MenuIconCustomWrapper>
-              <MenuIconCustom icon={icon} />
-            </MenuIconCustomWrapper>
-          </MenuButtonCircle>
+          <Message />
         </CollapseButton>
-        <LeftNav>
-          <SearchBoxList>
-            <SearchBox placeholder="검색할 키워드를 입력해주세요.." />
-            <SearchIcon icon={fa.faSearch} />
-          </SearchBoxList>
-          <List>
-            <CollapseButton>
-              <Message
-                toggle={this.onToggleDropDownMessage}
-                toggleYN={HeaderA.messageToggle}
-              />
-            </CollapseButton>
-          </List>
-          <List>
-            <CollapseButton>
-              <Notification
-                toggle={this.onToggleDropDownNoti}
-                toggleYN={HeaderA.notiToggle}
-              />
-            </CollapseButton>
-          </List>
-          <List>
-            <CollapseButton>
-              <Profile toggle={this.onToggleDropDownProfile} toggleYN={HeaderA.profileToggle} />
-            </CollapseButton>
-          </List>
-        </LeftNav>
+      </List>
+      <List>
+        <CollapseButton>
+          <Notification />
+        </CollapseButton>
+      </List>
+      <List>
+        <CollapseButton>
+          <Profile />
+        </CollapseButton>
+      </List>
+    </LeftNav>
 
-      </SectionHeader>
-    );
-  }
-}
+  </SectionHeader>
+);
 
+Header.propTypes = {
+  icon: PropTypes.shape({
+  }).isRequired,
+  HeaderStore: PropTypes.shape({
+    onToggleSidebar: PropTypes.func.isRequired,
+  }),
+};
 
-export default Header;
+Header.defaultProps = {
+  HeaderStore: null,
+};
+
+export default inject('HeaderStore')(observer(Header));

@@ -1,23 +1,21 @@
 import { observable, action } from 'mobx';
 
-class HeaderA {
+class HeaderStore {
   @observable dropDownToggle = {
-    Message: false,
-    Notification: false,
-    Profile: false,
+    isMessageToggle: false,
+    isNotificationToggle: false,
+    isProfileToggle: false,
   };
 
   @observable isToggleSidebar = false;
 
   @action onToggleDropDown = (comp) => {
-    const { dropDownToggle } = this.state;
+    const { dropDownToggle } = this;
 
     const keys = Object.keys(dropDownToggle);
     let key = '';
-    // let item = '';
     for (let i = 0; i < keys.length; i += 1) {
       key = keys[i];
-      // item = dropDownToggle[key];
       if (key === comp) {
         dropDownToggle[key] = !dropDownToggle[key];
       } else {
@@ -33,20 +31,16 @@ class HeaderA {
   };
 
   @action onToggleDropDownMessage = () => {
-    const { props } = this;
-    props.onToggleDropDown('Message');
+    this.onToggleDropDown('isMessageToggle');
   };
 
   @action onToggleDropDownNoti = () => {
-    const { props } = this;
-    props.onToggleDropDown('Notification');
+    this.onToggleDropDown('isNotificationToggle');
   };
 
   @action onToggleDropDownProfile = () => {
-    const { props } = this;
-    props.onToggleDropDown('Profile');
+    this.onToggleDropDown('isProfileToggle');
   };
-
 }
 
-export default new HeaderA();
+export default new HeaderStore();

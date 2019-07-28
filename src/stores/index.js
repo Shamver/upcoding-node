@@ -1,7 +1,7 @@
 import View from './View';
-import HeaderA from './HeaderA';
+import HeaderStore from './HeaderStore';
 
 export default {
   View,
-  HeaderA,
+  HeaderStore,
 };

@@ -7,6 +7,7 @@ import * as fa from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as mu from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import avatar from '../../../resources/images/avatar-1.jpg';
 import avatar2 from '../../../resources/images/avatar-2.jpg';
 import avatar3 from '../../../resources/images/avatar-3.jpg';
@@ -171,67 +172,78 @@ const MenuIconCustomWrapper = styled.div`
     display : block;
 `;
 
-const Message = ({ toggleYN, toggle }) => (
-  <DropdownInline isOpen={toggleYN} toggle={toggle}>
-    <DropdownToggleCustom>
-      <MenuButtonCircle button>
-        <MenuIconCustomWrapper>
-          <MenuIcon icon={fa.faEnvelope} />
-        </MenuIconCustomWrapper>
-      </MenuButtonCircle>
-    </DropdownToggleCustom>
-    <DropdownMenuAni right>
-      <DropdownItemHeader>
-        <Colorh6>
-          쪽지
-          <BadgeH5><BadgeA>745</BadgeA></BadgeH5>
-          {' '}
+const Message = ({ HeaderStore }) => {
+  const { isMessageToggle } = HeaderStore.dropDownToggle;
+  return (
+    <DropdownInline isOpen={isMessageToggle} toggle={HeaderStore.onToggleDropDownMessage}>
+      <DropdownToggleCustom>
+        <MenuButtonCircle button>
+          <MenuIconCustomWrapper>
+            <MenuIcon icon={fa.faEnvelope} />
+          </MenuIconCustomWrapper>
+        </MenuButtonCircle>
+      </DropdownToggleCustom>
+      <DropdownMenuAni right>
+        <DropdownItemHeader>
+          <Colorh6>
+            쪽지
+            <BadgeH5><BadgeA>745</BadgeA></BadgeH5>
+            {' '}
 
-        </Colorh6>
-      </DropdownItemHeader>
-      <DropDownItemCustom>
-        <ImgDiv className="media-img">
-          <Img src={avatar} alt="" />
-        </ImgDiv>
-        <Info>
-          <Name>
-                            명지전문대 대장 윤은식
-          </Name>
-          <SubMessage>배진영, 개새끼야 뭐하냐? 피방 고? 명지전문대 내가 흔든다.</SubMessage>
-        </Info>
-      </DropDownItemCustom>
-      <DropDownItemCustom>
-        <ImgDiv className="media-img">
-          <Img src={avatar2} alt="" />
-        </ImgDiv>
-        <Info>
-          <Name>
-                            홍남수
-          </Name>
-          <SubMessage>맥주 고? 약술 고? 응암팟 고?</SubMessage>
-        </Info>
-      </DropDownItemCustom>
-      <DropDownItemCustom>
-        <ImgDiv className="media-img">
-          <Img src={avatar3} alt="" />
-        </ImgDiv>
-        <Info>
-          <Name>
-                            이수현
-          </Name>
-          <SubMessage>야동 품번추천좀. 야애니 추천좀ㅋㅋㅋㅋㅋ 개재밌더라</SubMessage>
-        </Info>
-      </DropDownItemCustom>
-      <DropDownItemCustom>
-        <FooterMessage>모두 보기</FooterMessage>
-      </DropDownItemCustom>
-    </DropdownMenuAni>
-  </DropdownInline>
-);
-
-Message.propTypes = {
-  toggleYN: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+          </Colorh6>
+        </DropdownItemHeader>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <Img src={avatar} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+              명지전문대 대장 윤은식
+            </Name>
+            <SubMessage>배진영, 개새끼야 뭐하냐? 피방 고? 명지전문대 내가 흔든다.</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <Img src={avatar2} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+              홍남수
+            </Name>
+            <SubMessage>맥주 고? 약술 고? 응암팟 고?</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <Img src={avatar3} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+              이수현
+            </Name>
+            <SubMessage>야동 품번추천좀. 야애니 추천좀ㅋㅋㅋㅋㅋ 개재밌더라</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <FooterMessage>모두 보기</FooterMessage>
+        </DropDownItemCustom>
+      </DropdownMenuAni>
+    </DropdownInline>
+  );
 };
 
-export default Message;
+Message.propTypes = {
+  HeaderStore: PropTypes.shape({
+    onToggleDropDownMessage: PropTypes.func.isRequired,
+    dropDownToggle: PropTypes.shape({
+      isMessageToggle: PropTypes.bool.isRequired,
+    }),
+  }),
+};
+
+Message.defaultProps = {
+  HeaderStore: null,
+};
+
+export default inject('HeaderStore')(observer(Message));
