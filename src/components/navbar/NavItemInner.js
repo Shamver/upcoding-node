@@ -38,12 +38,11 @@ const NavItemInner = (props) => {
   } = props;
   const realTo = to;
   const isOpen = selectedSidebar === name;
-
   return (
     <React.Fragment>
       <ListItem
         button
-        toggled={isToggleSidebar.toString()}
+        toggled={isToggleSidebar}
         tag="button"
         className={isOpen ? 'active' : ''}
       >

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import * as fa from '@fortawesome/free-solid-svg-icons/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import NavItem from './NavItem';
 
 import TextSpan from '../../style/navbar/TextSpan';
@@ -73,12 +74,12 @@ const CollapseButton = styled(mu.ListItem)`
         }
     }
 `;
+
 const Navbar = (props) => {
   const {
-    menus, selectedCollapse, selectedSidebar, isToggleSidebar,
-    onSelectCollapse, onSelectSidebar,
+    menus, selectedCollapse, selectedSidebar,
+    onSelectCollapse, onSelectSidebar, HeaderA,
   } = props;
-
   const items = menus.map(data => (
     <NavItem
       title={data.head}
@@ -89,7 +90,7 @@ const Navbar = (props) => {
       selectedSidebar={selectedSidebar}
       onSelectCollapse={onSelectCollapse}
       onSelectSidebar={onSelectSidebar}
-      isToggleSidebar={isToggleSidebar}
+      isToggleSidebar={HeaderA.isToggleSidebar}
     />
   ));
   const isOpen = selectedCollapse === 'home';
@@ -100,7 +101,7 @@ const Navbar = (props) => {
         <NavRow>
           <NavBody xs="12">
             <rs.Row>
-              <SideItemCol toggled={isToggleSidebar.toString()} xs={12}>
+              <SideItemCol toggled={HeaderA.isToggleSidebar} xs={12}>
                 <CollapseButton
                   button
                   className={isOpen ? 'active' : ''}
@@ -109,11 +110,11 @@ const Navbar = (props) => {
                 >
                   <LeftIconSpan
                     name="home"
-                    toggled={isToggleSidebar.toString()}
+                    toggled={HeaderA.isToggleSidebar}
                   >
                     <LeftIcon icon={fa.faHome} name="home" />
                   </LeftIconSpan>
-                  <TextSpan toggled={isToggleSidebar.toString()} name="home">홈</TextSpan>
+                  <TextSpan toggled={HeaderA.isToggleSidebar} name="home">홈</TextSpan>
                 </CollapseButton>
               </SideItemCol>
               {items}
@@ -130,10 +131,12 @@ Navbar.propTypes = {
   ).isRequired,
   selectedCollapse: PropTypes.string.isRequired,
   selectedSidebar: PropTypes.string.isRequired,
-  isToggleSidebar: PropTypes.bool.isRequired,
   onSelectCollapse: PropTypes.func.isRequired,
   onSelectSidebar: PropTypes.func.isRequired,
+  HeaderA: PropTypes.shape({
+    isToggleSidebar: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 
-export default Navbar;
+export default inject('HeaderA')(observer(Navbar));

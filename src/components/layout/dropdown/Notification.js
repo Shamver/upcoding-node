@@ -196,10 +196,10 @@ const MenuIconCustomWrapper = styled.div`
     display : block;
 `;
 
-const Notification = ({ toggleYN, toggle, onToggleSidebar }) => (
+const Notification = ({ toggleYN, toggle }) => (
   <DropdownInline isOpen={toggleYN} toggle={toggle}>
     <DropdownToggleCustom>
-      <MenuButtonCircle button onClick={onToggleSidebar}>
+      <MenuButtonCircle button>
         <MenuIconCustomWrapper>
           <MenuIcon icon={fa.faBell} />
         </MenuIconCustomWrapper>
@@ -273,7 +273,6 @@ const Notification = ({ toggleYN, toggle, onToggleSidebar }) => (
 Notification.propTypes = {
   toggleYN: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
-  onToggleSidebar: PropTypes.func.isRequired,
 };
 
 

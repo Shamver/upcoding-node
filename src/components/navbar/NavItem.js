@@ -112,12 +112,12 @@ const NavItem = (props) => {
     >
       <LeftIconSpan
         name={title}
-        toggled={isToggleSidebar.toString()}
+        toggled={isToggleSidebar}
       >
         <LeftIcon icon={icon} name={title} />
       </LeftIconSpan>
-      <TextSpan toggled={isToggleSidebar.toString()} name={title}>{title}</TextSpan>
-      <RightIconSpan toggled={isToggleSidebar.toString()} name={title}>
+      <TextSpan toggled={isToggleSidebar} name={title}>{title}</TextSpan>
+      <RightIconSpan toggled={isToggleSidebar} name={title}>
         <RightIcon icon={fa.faChevronRight} name={title} />
       </RightIconSpan>
     </CollapseButton>
@@ -125,10 +125,10 @@ const NavItem = (props) => {
 
   return (
     <React.Fragment>
-      <SideItemCol toggled={isToggleSidebar.toString()} xs={12}>
+      <SideItemCol toggled={isToggleSidebar} xs={12}>
         {CollapseButtonRtn}
-        <Collapse isOpen={isOpen} toggled={isToggleSidebar.toString()}>
-          <ListGroup toggled={isToggleSidebar.toString()}>
+        <Collapse isOpen={isOpen} toggled={isToggleSidebar}>
+          <ListGroup toggled={isToggleSidebar}>
             {item}
           </ListGroup>
         </Collapse>

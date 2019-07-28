@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import * as fa from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
@@ -11,6 +11,7 @@ import Code from './content/code/Code';
 import RightIconSpan from '../style/navbar/RightIconSpan';
 import TextSpan from '../style/navbar/TextSpan';
 import ListGroup from '../style/navbar/ListGroup';
+import {inject, observer} from "mobx-react";
 
 const NavbarStyled = styled.div`
     position: fixed !important;
@@ -72,6 +73,9 @@ const MainWrapper = styled.div`
     height : 100%;
 `;
 
+@inject('HeaderA')
+@withRouter
+@observer
 class App extends React.Component {
   static propTypes = {
     history: PropTypes.shape({
@@ -82,34 +86,7 @@ class App extends React.Component {
   state = {
     selectedCollapse: 'home',
     selectedSidebar: '',
-    isToggleSidebar: false,
-    dropDownToggle: {
-      Message: false,
-      Notification: false,
-      Profile: false,
-    },
   };
-
-    onToggleDropDown = (comp) => {
-      const { dropDownToggle } = this.state;
-
-      const keys = Object.keys(dropDownToggle);
-      let key = '';
-      // let item = '';
-      for (let i = 0; i < keys.length; i += 1) {
-        key = keys[i];
-        // item = dropDownToggle[key];
-        if (key === comp) {
-          dropDownToggle[key] = !dropDownToggle[key];
-        } else {
-          dropDownToggle[key] = false;
-        }
-      }
-
-      this.setState({
-        dropDownToggle,
-      });
-    };
 
     onSelectCollapse = (event) => {
       let name = event.target.getAttribute('name');
@@ -140,17 +117,11 @@ class App extends React.Component {
       });
     };
 
-    onToggleSidebar = () => {
-      const { isToggleSidebar } = this.state;
-      this.setState({
-        isToggleSidebar: !isToggleSidebar,
-      });
-    };
-
     render() {
       let toggled = false;
       let icon = null;
-      const { isToggleSidebar } = this.state;
+      const { isToggleSidebar } = this.props.HeaderA;
+      console.log(isToggleSidebar);
       if (isToggleSidebar) {
         toggled = true;
       }
@@ -160,7 +131,7 @@ class App extends React.Component {
       } else {
         icon = fa.faArrowLeft;
       }
-      const { dropDownToggle } = this.state;
+
       const { state } = this;
       return (
         <React.Fragment>
@@ -168,11 +139,11 @@ class App extends React.Component {
             path="/"
             render={() => (
               <Header
-                onToggleDropDown={this.onToggleDropDown}
-                messageToggle={dropDownToggle.Message}
-                notiToggle={dropDownToggle.Notification}
-                profileToggle={dropDownToggle.Profile}
-                onToggleSidebar={this.onToggleSidebar}
+                // onToggleDropDown={this.onToggleDropDown}
+                // messageToggle={dropDownToggle.Message}
+                // notiToggle={dropDownToggle.Notification}
+                // profileToggle={dropDownToggle.Profile}
+                // onToggleSidebar={this.onToggleSidebar}
                 icon={icon}
               />
 
@@ -304,7 +275,7 @@ class App extends React.Component {
               onSelectCollapse={this.onSelectCollapse}
               onSelectSidebar={this.onSelectSidebar}
               onToggleSidebar={this.onToggleSidebar}
-              isToggleSidebar={state.isToggleSidebar}
+              isToggleSidebar={isToggleSidebar}
             />
           </NavbarStyled>
           <MainComponent

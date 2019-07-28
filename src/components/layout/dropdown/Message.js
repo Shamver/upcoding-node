@@ -171,10 +171,10 @@ const MenuIconCustomWrapper = styled.div`
     display : block;
 `;
 
-const Message = ({ toggleYN, toggle, onToggleSidebar }) => (
+const Message = ({ toggleYN, toggle }) => (
   <DropdownInline isOpen={toggleYN} toggle={toggle}>
     <DropdownToggleCustom>
-      <MenuButtonCircle button onClick={onToggleSidebar}>
+      <MenuButtonCircle button>
         <MenuIconCustomWrapper>
           <MenuIcon icon={fa.faEnvelope} />
         </MenuIconCustomWrapper>
@@ -232,7 +232,6 @@ const Message = ({ toggleYN, toggle, onToggleSidebar }) => (
 Message.propTypes = {
   toggleYN: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
-  onToggleSidebar: PropTypes.func.isRequired,
 };
 
 export default Message;

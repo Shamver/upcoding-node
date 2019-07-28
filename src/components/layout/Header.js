@@ -9,6 +9,7 @@ import logoText from '../../resources/images/LOGO.png';
 import Message from './dropdown/Message';
 import Notification from './dropdown/Notification';
 import Profile from './dropdown/Profile';
+import {inject, observer} from "mobx-react";
 
 const LogoImage = styled.img`
     width : 40px;
@@ -46,6 +47,7 @@ const AllLogoWrapper = styled.div`
 
 const SectionHeader = styled.div`
     position : fixed;
+    z-index : 1000;
     width : 100%;
     background : #FFFFFF;
     height : 65px;
@@ -153,87 +155,71 @@ const MenuIconCustomWrapper = styled.div`
     display : block;
 `;
 
+@inject('HeaderA')
+@observer
 class Header extends React.Component {
   static propTypes = {
-    onToggleDropDown: PropTypes.func.isRequired,
-    onToggleSidebar: PropTypes.func.isRequired,
-    messageToggle: PropTypes.bool.isRequired,
-    notiToggle: PropTypes.bool.isRequired,
-    profileToggle: PropTypes.bool.isRequired,
     icon: PropTypes.shape({
+    }).isRequired,
+    HeaderA: PropTypes.shape({
+      onToggleSidebar: PropTypes.func.isRequired,
+      messageToggle: PropTypes.bool.isRequired,
+      notiToggle: PropTypes.bool.isRequired,
+      profileToggle: PropTypes.bool.isRequired,
     }).isRequired,
   };
 
-    onToggleDropDownMessage = () => {
-      const { props } = this;
-      props.onToggleDropDown('Message');
-    };
+  render() {
+    const { icon, HeaderA } = this.props;
+    return (
+      <SectionHeader>
+        <AllLogoWrapper>
+          <LogoWrapper>
+            <LogoImage src={logo} />
+          </LogoWrapper>
+          <LogoTextWrapper>
+            <LogoTextImage src={logoText} />
+          </LogoTextWrapper>
 
-    onToggleDropDownNoti = () => {
-      const { props } = this;
-      props.onToggleDropDown('Notification');
-    };
+        </AllLogoWrapper>
+        <CollapseButton>
+          <MenuButtonCircle button onClick={HeaderA.onToggleSidebar}>
+            <MenuIconCustomWrapper>
+              <MenuIconCustom icon={icon} />
+            </MenuIconCustomWrapper>
+          </MenuButtonCircle>
+        </CollapseButton>
+        <LeftNav>
+          <SearchBoxList>
+            <SearchBox placeholder="검색할 키워드를 입력해주세요.." />
+            <SearchIcon icon={fa.faSearch} />
+          </SearchBoxList>
+          <List>
+            <CollapseButton>
+              <Message
+                toggle={this.onToggleDropDownMessage}
+                toggleYN={HeaderA.messageToggle}
+              />
+            </CollapseButton>
+          </List>
+          <List>
+            <CollapseButton>
+              <Notification
+                toggle={this.onToggleDropDownNoti}
+                toggleYN={HeaderA.notiToggle}
+              />
+            </CollapseButton>
+          </List>
+          <List>
+            <CollapseButton>
+              <Profile toggle={this.onToggleDropDownProfile} toggleYN={HeaderA.profileToggle} />
+            </CollapseButton>
+          </List>
+        </LeftNav>
 
-    onToggleDropDownProfile = () => {
-      const { props } = this;
-      props.onToggleDropDown('Profile');
-    };
-
-    render() {
-      const {
-        onToggleSidebar, icon, messageToggle, notiToggle, profileToggle,
-      } = this.props;
-      return (
-        <SectionHeader>
-          <AllLogoWrapper>
-            <LogoWrapper>
-              <LogoImage src={logo} />
-            </LogoWrapper>
-            <LogoTextWrapper>
-              <LogoTextImage src={logoText} />
-            </LogoTextWrapper>
-
-          </AllLogoWrapper>
-          <CollapseButton>
-            <MenuButtonCircle button onClick={onToggleSidebar}>
-              <MenuIconCustomWrapper>
-                <MenuIconCustom icon={icon} />
-              </MenuIconCustomWrapper>
-            </MenuButtonCircle>
-          </CollapseButton>
-          <LeftNav>
-            <SearchBoxList>
-              <SearchBox placeholder="검색할 키워드를 입력해주세요.." />
-              <SearchIcon icon={fa.faSearch} />
-            </SearchBoxList>
-            <List>
-              <CollapseButton>
-                <Message
-                  toggle={this.onToggleDropDownMessage}
-                  onToggleSidebar={onToggleSidebar}
-                  toggleYN={messageToggle}
-                />
-              </CollapseButton>
-            </List>
-            <List>
-              <CollapseButton>
-                <Notification
-                  toggle={this.onToggleDropDownNoti}
-                  onToggleSidebar={onToggleSidebar}
-                  toggleYN={notiToggle}
-                />
-              </CollapseButton>
-            </List>
-            <List>
-              <CollapseButton>
-                <Profile toggle={this.onToggleDropDownProfile} toggleYN={profileToggle} />
-              </CollapseButton>
-            </List>
-          </LeftNav>
-
-        </SectionHeader>
-      );
-    }
+      </SectionHeader>
+    );
+  }
 }
 
 
