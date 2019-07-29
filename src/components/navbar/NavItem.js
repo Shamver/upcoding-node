@@ -1,15 +1,77 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as fa from '@fortawesome/free-solid-svg-icons';
 import * as mu from '@material-ui/core';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import * as fa from '@fortawesome/free-solid-svg-icons';
+import { observer, inject } from 'mobx-react';
+import * as rs from 'reactstrap';
 import NavItemInner from './NavItemInner';
-import TextSpan from '../../style/navbar/TextSpan';
-import SideItemCol from '../../style/navbar/SideItemCol';
-import Collapse from '../../style/navbar/Collapse';
-import ListGroup from '../../style/navbar/ListGroup';
-import RightIconSpan from '../../style/navbar/RightIconSpan';
+
+const Collapse = styled(rs.Collapse)`
+    margin: 0;
+`;
+
+const TextSpan = styled.span`
+    @media only screen and (max-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0.05s' : '0')}
+    }
+    @media only screen and (min-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+    }
+    
+    
+`;
+
+const RightIconSpan = styled.span`
+    height: 20px;
+    width: 24px;
+    line-height: 25px;
+    position: absolute;
+    right: 10px;
+    font-size: 17px;
+    
+    @media only screen and (max-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0.1s' : '0')}
+    }
+    
+    @media only screen and (min-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+    }
+`;
+
+const ListGroup = styled(rs.ListGroup)`
+    text-align: left !important;
+    background-color: #192532;
+    
+    @media only screen and (max-width: 1200px){
+        max-height: ${({ toggled }) => (toggled === false ? 0 : 'none')}
+        visibility: ${({ toggled }) => (toggled === false ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === false ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === false ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
+        transition-delay: ${({ toggled }) => (toggled === false ? '0' : '0.1s')}
+    }
+    
+    @media only screen and (min-width: 1200px) {
+        max-height: ${({ toggled }) => (toggled === true ? 0 : 'none')}
+        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === true ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+    }
+`;
 
 const CollapseButton = styled(mu.ListItem)`
     width: 100% !important;
@@ -84,11 +146,31 @@ const RightIcon = styled(FontAwesomeIcon)`
     }
 `;
 
+const SideItemCol = styled(rs.Col)`
+    color: white;
+    text-align: center;
+    text-vertical: middle;
+    padding: 0;
+    
+    @media only screen and (max-width: 1200px){
+        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        transition: opacity 0.2s;
+        transition-delay: 0.08s;
+    }
+    
+    @media only screen and (min-width: 1200px) {
+        transition: opacity 0.2s;
+        transition-delay: 0.08s;
+        opacity: 100;
+    }
+`;
+
+
 const NavItem = (props) => {
   const {
-    title, items, icon, selectedCollapse,
-    selectedSidebar, isToggleSidebar, onSelectSidebar, onSelectCollapse,
+    title, NavbarStore, items, icon,
   } = props;
+  const { selectedCollapse } = NavbarStore;
 
   const isOpen = selectedCollapse === title;
   const item = items.map(data => (
@@ -96,9 +178,7 @@ const NavItem = (props) => {
       name={data.name}
       to={data.to}
       key={data.id}
-      onSelectSidebar={onSelectSidebar}
-      selectedSidebar={selectedSidebar}
-      isToggleSidebar={isToggleSidebar}
+      icon={icon}
     />
   ));
 
@@ -106,18 +186,18 @@ const NavItem = (props) => {
     <CollapseButton
       button
       name={title}
-      onClick={onSelectCollapse}
+      onClick={NavbarStore.onSelectCollapse}
       disabled={false}
       className={isOpen ? 'active' : ''}
     >
       <LeftIconSpan
         name={title}
-        toggled={isToggleSidebar}
+        toggled={NavbarStore.isToggleSidebar}
       >
         <LeftIcon icon={icon} name={title} />
       </LeftIconSpan>
-      <TextSpan toggled={isToggleSidebar} name={title}>{title}</TextSpan>
-      <RightIconSpan toggled={isToggleSidebar} name={title}>
+      <TextSpan toggled={NavbarStore.isToggleSidebar} name={title}>{title}</TextSpan>
+      <RightIconSpan toggled={NavbarStore.isToggleSidebar} name={title}>
         <RightIcon icon={fa.faChevronRight} name={title} />
       </RightIconSpan>
     </CollapseButton>
@@ -125,10 +205,10 @@ const NavItem = (props) => {
 
   return (
     <React.Fragment>
-      <SideItemCol toggled={isToggleSidebar} xs={12}>
+      <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
         {CollapseButtonRtn}
-        <Collapse isOpen={isOpen} toggled={isToggleSidebar}>
-          <ListGroup toggled={isToggleSidebar}>
+        <Collapse isOpen={isOpen} toggled={NavbarStore.isToggleSidebar.toString()}>
+          <ListGroup toggled={NavbarStore.isToggleSidebar.toString()}>
             {item}
           </ListGroup>
         </Collapse>
@@ -139,16 +219,20 @@ const NavItem = (props) => {
 
 NavItem.propTypes = {
   title: PropTypes.string.isRequired,
-  items: PropTypes.PropTypes.arrayOf(
+  items: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object]),
   ).isRequired,
   icon: PropTypes.shape({
   }).isRequired,
-  selectedCollapse: PropTypes.string.isRequired,
-  selectedSidebar: PropTypes.string.isRequired,
-  isToggleSidebar: PropTypes.bool.isRequired,
-  onSelectSidebar: PropTypes.func.isRequired,
-  onSelectCollapse: PropTypes.func.isRequired,
+  NavbarStore: PropTypes.shape({
+    isToggleSidebar: PropTypes.bool.isRequired,
+    onSelectCollapse: PropTypes.func.isRequired,
+    selectedCollapse: PropTypes.string.isRequired,
+  }),
 };
 
-export default NavItem;
+NavItem.defaultProps = {
+  NavbarStore: null,
+};
+
+export default inject('NavbarStore')(observer(NavItem));

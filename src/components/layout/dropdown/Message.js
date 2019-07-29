@@ -189,7 +189,6 @@ const Message = ({ HeaderStore }) => {
             쪽지
             <BadgeH5><BadgeA>745</BadgeA></BadgeH5>
             {' '}
-
           </Colorh6>
         </DropdownItemHeader>
         <DropDownItemCustom>

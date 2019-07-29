@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import * as mu from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { observer, inject } from 'mobx-react';
 
 const ListItem = styled(mu.ListItem)`
     padding : 0px 0px !important;
@@ -33,20 +34,19 @@ const ListLink = styled(Link)`
 
 
 const NavItemInner = (props) => {
-  const {
-    name, to, selectedSidebar, onSelectSidebar, isToggleSidebar,
-  } = props;
+  const { name, to, NavbarStore } = props;
   const realTo = to;
+  const { selectedSidebar } = NavbarStore;
   const isOpen = selectedSidebar === name;
   return (
     <React.Fragment>
       <ListItem
         button
-        toggled={isToggleSidebar}
+        toggled={NavbarStore.isToggleSidebar.toString()}
         tag="button"
         className={isOpen ? 'active' : ''}
       >
-        <ListLink to={realTo} name={name} onClick={onSelectSidebar}>{name}</ListLink>
+        <ListLink to={realTo} name={name} onClick={NavbarStore.onSelectSidebar}>{name}</ListLink>
       </ListItem>
     </React.Fragment>
   );
@@ -55,9 +55,15 @@ const NavItemInner = (props) => {
 NavItemInner.propTypes = {
   name: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-  selectedSidebar: PropTypes.string.isRequired,
-  onSelectSidebar: PropTypes.func.isRequired,
-  isToggleSidebar: PropTypes.bool.isRequired,
+  NavbarStore: PropTypes.shape({
+    onSelectSidebar: PropTypes.func.isRequired,
+    isToggleSidebar: PropTypes.bool.isRequired,
+    selectedSidebar: PropTypes.string.isRequired,
+  }),
 };
 
-export default NavItemInner;
+NavItemInner.defaultProps = {
+  NavbarStore: null,
+};
+
+export default inject('NavbarStore')((observer)(NavItemInner));

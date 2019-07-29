@@ -7,8 +7,6 @@ class HeaderStore {
     isProfileToggle: false,
   };
 
-  @observable isToggleSidebar = false;
-
   @action onToggleDropDown = (comp) => {
     const { dropDownToggle } = this;
 
@@ -24,10 +22,6 @@ class HeaderStore {
     }
 
     this.dropDownToggle = dropDownToggle;
-  };
-
-  @action onToggleSidebar = () => {
-    this.isToggleSidebar = !this.isToggleSidebar;
   };
 
   @action onToggleDropDownMessage = () => {

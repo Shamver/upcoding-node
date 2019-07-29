@@ -9,8 +9,20 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import NavItem from './NavItem';
 
-import TextSpan from '../../style/navbar/TextSpan';
-import SideItemCol from '../../style/navbar/SideItemCol';
+const TextSpan = styled.span`
+    @media only screen and (max-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0.05s' : '0')}
+    }
+    @media only screen and (min-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+    }
+`;
 
 const NavBody = styled(rs.Col)`
     font-family : "Jeju Gothic", 'Roboto';
@@ -75,46 +87,58 @@ const CollapseButton = styled(mu.ListItem)`
     }
 `;
 
+const SideItemCol = styled(rs.Col)`
+    color: white;
+    text-align: center;
+    text-vertical: middle;
+    padding: 0;
+    
+    @media only screen and (max-width: 1200px){
+        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        transition: opacity 0.2s;
+        transition-delay: 0.08s;
+    }
+    
+    @media only screen and (min-width: 1200px) {
+        transition: opacity 0.2s;
+        transition-delay: 0.08s;
+        opacity: 100;
+    }
+`;
+
 const Navbar = (props) => {
-  const {
-    menus, selectedCollapse, selectedSidebar,
-    onSelectCollapse, onSelectSidebar, HeaderStore,
-  } = props;
+  const { menus, NavbarStore } = props;
+  const { selectedCollapse } = NavbarStore;
   const items = menus.map(data => (
     <NavItem
       title={data.head}
       icon={data.icon}
       items={data.items}
       key={data.id}
-      selectedCollapse={selectedCollapse}
-      selectedSidebar={selectedSidebar}
-      onSelectCollapse={onSelectCollapse}
-      onSelectSidebar={onSelectSidebar}
-      isToggleSidebar={HeaderStore.isToggleSidebar}
     />
   ));
   const isOpen = selectedCollapse === 'home';
-
   return (
     <React.Fragment>
       <div>
         <NavRow>
           <NavBody xs="12">
             <rs.Row>
-              <SideItemCol toggled={HeaderStore.isToggleSidebar} xs={12}>
+              <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
                 <CollapseButton
                   button
                   className={isOpen ? 'active' : ''}
                   name="home"
-                  onClick={onSelectCollapse}
+                  onClick={NavbarStore.onSelectCollapse}
                 >
                   <LeftIconSpan
                     name="home"
-                    toggled={HeaderStore.isToggleSidebar}
+                    toggled={NavbarStore.isToggleSidebar}
+                    aa={false}
                   >
                     <LeftIcon icon={fa.faHome} name="home" />
                   </LeftIconSpan>
-                  <TextSpan toggled={HeaderStore.isToggleSidebar} name="home">홈</TextSpan>
+                  <TextSpan toggled={NavbarStore.isToggleSidebar} name="home">홈</TextSpan>
                 </CollapseButton>
               </SideItemCol>
               {items}
@@ -126,17 +150,20 @@ const Navbar = (props) => {
   );
 };
 Navbar.propTypes = {
-  menus: PropTypes.PropTypes.arrayOf(
+  menus: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object]),
   ).isRequired,
-  selectedCollapse: PropTypes.string.isRequired,
-  selectedSidebar: PropTypes.string.isRequired,
-  onSelectCollapse: PropTypes.func.isRequired,
-  onSelectSidebar: PropTypes.func.isRequired,
-  HeaderStore: PropTypes.shape({
-    isToggleSidebar: PropTypes.bool.isRequired,
-  }).isRequired,
+  NavbarStore: PropTypes.shape({
+    selectedCollapse: PropTypes.string.isRequired,
+    selectedSidebar: PropTypes.string.isRequired,
+    onSelectCollapse: PropTypes.func.isRequired,
+    onSelectSidebar: PropTypes.func.isRequired,
+    isToggleSidebar: PropTypes.bool,
+  }),
 };
 
+Navbar.defaultProps = {
+  NavbarStore: null,
+};
 
-export default inject('HeaderStore')(observer(Navbar));
+export default inject('NavbarStore')(observer(Navbar));

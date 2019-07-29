@@ -1,7 +1,7 @@
-import View from './View';
 import HeaderStore from './HeaderStore';
+import NavbarStore from './NavbarStore';
 
 export default {
-  View,
   HeaderStore,
+  NavbarStore,
 };

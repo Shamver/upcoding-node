@@ -151,11 +151,11 @@ const MenuIconCustom = styled(MenuIcon)`
 `;
 
 const MenuIconCustomWrapper = styled.div`
-    line-height : 22px !important;
+    line-height : 19px !important;
     display : block;
 `;
 
-const Header = ({ icon, HeaderStore }) => (
+const Header = ({ icon, NavbarStore }) => (
   <SectionHeader>
     <AllLogoWrapper>
       <LogoWrapper>
@@ -166,7 +166,7 @@ const Header = ({ icon, HeaderStore }) => (
       </LogoTextWrapper>
     </AllLogoWrapper>
     <CollapseButton>
-      <MenuButtonCircle button onClick={HeaderStore.onToggleSidebar}>
+      <MenuButtonCircle button onClick={NavbarStore.onToggleSidebar}>
         <MenuIconCustomWrapper>
           <MenuIconCustom icon={icon} />
         </MenuIconCustomWrapper>
@@ -200,13 +200,13 @@ const Header = ({ icon, HeaderStore }) => (
 Header.propTypes = {
   icon: PropTypes.shape({
   }).isRequired,
-  HeaderStore: PropTypes.shape({
+  NavbarStore: PropTypes.shape({
     onToggleSidebar: PropTypes.func.isRequired,
   }),
 };
 
 Header.defaultProps = {
-  HeaderStore: null,
+  NavbarStore: null,
 };
 
-export default inject('HeaderStore')(observer(Header));
+export default inject('HeaderStore', 'NavbarStore')(observer(Header));
