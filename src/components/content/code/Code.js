@@ -1,5 +1,5 @@
 import React from 'react';
-import * as rs from 'reactstrap';
+import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
@@ -22,7 +22,7 @@ const H4 = styled.h4`
 
 const Code = ({ icon, title }) => (
   <React.Fragment>
-    <rs.Container fluid>
+    <Container fluid>
       <H4>
         <LeftIconSpan>
           <LeftIcon icon={icon} />
@@ -34,7 +34,7 @@ const Code = ({ icon, title }) => (
       </H4>
       <CodeGroup />
       <CodeGroup />
-    </rs.Container>
+    </Container>
   </React.Fragment>
 );
 

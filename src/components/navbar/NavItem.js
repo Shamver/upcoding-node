@@ -1,14 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as mu from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import * as fa from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { observer, inject } from 'mobx-react';
-import * as rs from 'reactstrap';
+import { Collapse, Col, ListGroup } from 'reactstrap';
 import NavItemInner from './NavItemInner';
 
-const Collapse = styled(rs.Collapse)`
+const CollapseA = styled(Collapse)`
     margin: 0;
 `;
 
@@ -52,7 +52,7 @@ const RightIconSpan = styled.span`
     }
 `;
 
-const ListGroup = styled(rs.ListGroup)`
+const ListGroupA = styled(ListGroup)`
     text-align: left !important;
     background-color: #192532;
     
@@ -73,7 +73,7 @@ const ListGroup = styled(rs.ListGroup)`
     }
 `;
 
-const CollapseButton = styled(mu.ListItem)`
+const CollapseButton = styled(ListItem)`
     width: 100% !important;
     height: 47px !important;
     padding: 11px 15px !important;
@@ -146,7 +146,7 @@ const RightIcon = styled(FontAwesomeIcon)`
     }
 `;
 
-const SideItemCol = styled(rs.Col)`
+const SideItemCol = styled(Col)`
     color: white;
     text-align: center;
     text-vertical: middle;
@@ -198,7 +198,7 @@ const NavItem = (props) => {
       </LeftIconSpan>
       <TextSpan toggled={NavbarStore.isToggleSidebar} name={title}>{title}</TextSpan>
       <RightIconSpan toggled={NavbarStore.isToggleSidebar} name={title}>
-        <RightIcon icon={fa.faChevronRight} name={title} />
+        <RightIcon icon={faChevronRight} name={title} />
       </RightIconSpan>
     </CollapseButton>
   );
@@ -207,11 +207,11 @@ const NavItem = (props) => {
     <React.Fragment>
       <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
         {CollapseButtonRtn}
-        <Collapse isOpen={isOpen} toggled={NavbarStore.isToggleSidebar.toString()}>
-          <ListGroup toggled={NavbarStore.isToggleSidebar.toString()}>
+        <CollapseA isOpen={isOpen} toggled={NavbarStore.isToggleSidebar.toString()}>
+          <ListGroupA toggled={NavbarStore.isToggleSidebar.toString()}>
             {item}
-          </ListGroup>
-        </Collapse>
+          </ListGroupA>
+        </CollapseA>
       </SideItemCol>
     </React.Fragment>
   );

@@ -3,9 +3,11 @@ import {
   Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Badge,
 } from 'reactstrap';
 import styled from 'styled-components';
-import * as fa from '@fortawesome/free-solid-svg-icons';
+import {
+  faSignOutAlt, faCog, faUser, faEnvelope,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as mu from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import avatar from '../../../resources/images/avatar.jpg';
@@ -63,7 +65,7 @@ const ProfileImg = styled.img`
     cursor : pointer;
 `;
 
-const MenuButtonCircle = styled(mu.ListItem)`
+const MenuButtonCircle = styled(ListItem)`
     background-color : #f7f7f7 !important;
     height : 39px;
     width : 39px !important;
@@ -183,19 +185,19 @@ const Profile = ({ HeaderStore }) => {
         </DropDownItemHeader>
         <DropDownItemCustom>
           <CustomInner>
-            <MenuIcon icon={fa.faCog} />
+            <MenuIcon icon={faCog} />
                     &nbsp;&nbsp;설정
           </CustomInner>
         </DropDownItemCustom>
         <DropDownItemCustom>
           <CustomInner>
-            <MenuIcon icon={fa.faUser} />
+            <MenuIcon icon={faUser} />
                     &nbsp;&nbsp;프로필
           </CustomInner>
         </DropDownItemCustom>
         <DropDownItemCustom>
           <CustomInner>
-            <MenuIcon icon={fa.faEnvelope} />
+            <MenuIcon icon={faEnvelope} />
                     &nbsp;&nbsp;메일
                     &nbsp;&nbsp;
 
@@ -205,7 +207,7 @@ const Profile = ({ HeaderStore }) => {
         </DropDownItemCustom>
         <DropDownItemCustom>
           <CustomInner>
-            <MenuIcon icon={fa.faSignOutAlt} />
+            <MenuIcon icon={faSignOutAlt} />
                     &nbsp;&nbsp;로그아웃
           </CustomInner>
         </DropDownItemCustom>

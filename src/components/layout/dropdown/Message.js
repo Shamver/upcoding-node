@@ -3,11 +3,12 @@ import {
   Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Badge,
 } from 'reactstrap';
 import styled from 'styled-components';
-import * as fa from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as mu from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
+
 import avatar from '../../../resources/images/avatar-1.jpg';
 import avatar2 from '../../../resources/images/avatar-2.jpg';
 import avatar3 from '../../../resources/images/avatar-3.jpg';
@@ -25,7 +26,7 @@ const DropdownMenuAni = styled(DropdownMenu)`
     }
 `;
 
-const MenuButtonCircle = styled(mu.ListItem)`
+const MenuButtonCircle = styled(ListItem)`
     background-color : #f7f7f7 !important;
     height : 39px;
     width : 39px !important;
@@ -133,6 +134,7 @@ const SubMessage = styled.span`
     max-width: 90%;
     line-height: 1.5;
     white-space : normal
+    white-space : normal
 `;
 
 const FooterMessage = styled.span`
@@ -179,7 +181,7 @@ const Message = ({ HeaderStore }) => {
       <DropdownToggleCustom>
         <MenuButtonCircle button>
           <MenuIconCustomWrapper>
-            <MenuIcon icon={fa.faEnvelope} />
+            <MenuIcon icon={faEnvelope} />
           </MenuIconCustomWrapper>
         </MenuButtonCircle>
       </DropdownToggleCustom>

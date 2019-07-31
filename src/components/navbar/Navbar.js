@@ -1,9 +1,8 @@
 import React from 'react';
-import * as rs from 'reactstrap';
-import * as mu from '@material-ui/core';
+import { Col, Row } from 'reactstrap';
+import { ListItem } from '@material-ui/core';
 import styled from 'styled-components';
-
-import * as fa from '@fortawesome/free-solid-svg-icons/index';
+import { faHome } from '@fortawesome/free-solid-svg-icons/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
@@ -24,11 +23,11 @@ const TextSpan = styled.span`
     }
 `;
 
-const NavBody = styled(rs.Col)`
+const NavBody = styled(Col)`
     font-family : "Jeju Gothic", 'Roboto';
 `;
 
-const NavRow = styled(rs.Row)`
+const NavRow = styled(Row)`
     margin: 0;
 `;
 
@@ -52,7 +51,7 @@ const LeftIcon = styled(FontAwesomeIcon)`
     vertical-align : unset;
 `;
 
-const CollapseButton = styled(mu.ListItem)`
+const CollapseButton = styled(ListItem)`
     width: 100% !important;
     height: 47px !important;
     padding: 10px 15px !important;
@@ -87,7 +86,7 @@ const CollapseButton = styled(mu.ListItem)`
     }
 `;
 
-const SideItemCol = styled(rs.Col)`
+const SideItemCol = styled(Col)`
     color: white;
     text-align: center;
     text-vertical: middle;
@@ -123,7 +122,7 @@ const Navbar = (props) => {
       <div>
         <NavRow>
           <NavBody xs="12">
-            <rs.Row>
+            <Row>
               <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
                 <CollapseButton
                   button
@@ -136,13 +135,13 @@ const Navbar = (props) => {
                     toggled={NavbarStore.isToggleSidebar}
                     aa={false}
                   >
-                    <LeftIcon icon={fa.faHome} name="home" />
+                    <LeftIcon icon={faHome} name="home" />
                   </LeftIconSpan>
                   <TextSpan toggled={NavbarStore.isToggleSidebar} name="home">홈</TextSpan>
                 </CollapseButton>
               </SideItemCol>
               {items}
-            </rs.Row>
+            </Row>
           </NavBody>
         </NavRow>
       </div>

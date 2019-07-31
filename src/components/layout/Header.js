@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as fa from '@fortawesome/free-solid-svg-icons';
-import * as mu from '@material-ui/core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
+import Message from './dropdown/Message';
 import logo from '../../resources/images/shamver_upcoding.png';
 import logoText from '../../resources/images/LOGO.png';
-import Message from './dropdown/Message';
 import Notification from './dropdown/Notification';
 import Profile from './dropdown/Profile';
 
@@ -65,7 +65,7 @@ const CollapseButton = styled.a`
     min-height: calc(65px - 3px);
 `;
 
-const MenuButtonCircle = styled(mu.ListItem)`
+const MenuButtonCircle = styled(ListItem)`
     background-color : #f7f7f7 !important;
     height : 39px;
     width : 39px !important;
@@ -175,7 +175,7 @@ const Header = ({ icon, NavbarStore }) => (
     <LeftNav>
       <SearchBoxList>
         <SearchBox placeholder="검색할 키워드를 입력해주세요.." />
-        <SearchIcon icon={fa.faSearch} />
+        <SearchIcon icon={faSearch} />
       </SearchBoxList>
       <List>
         <CollapseButton>

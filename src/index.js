@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import stores from './stores';
+import App from './components/App';
 
 ReactDOM.render((
   <Provider {...stores}>

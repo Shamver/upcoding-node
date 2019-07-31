@@ -1,12 +1,12 @@
 const {
   addDecoratorsLegacy,
   disableEsLint,
+  addBabelPlugin,
   override,
 } = require('customize-cra');
 
-module.exports = {
-  webpack: override(
-    disableEsLint(),
-    addDecoratorsLegacy(),
-  ),
-};
+module.exports = override(
+  disableEsLint(),
+  addDecoratorsLegacy(),
+  addBabelPlugin('@babel/plugin-syntax-dynamic-import'),
+);

@@ -1,13 +1,17 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import * as fa from '@fortawesome/free-solid-svg-icons';
+import {
+  faClipboardList, faArrowRight, faArrowLeft, faDatabase, faToolbox,
+  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode,
+} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import * as rs from 'reactstrap';
+import { ListGroup } from 'reactstrap';
+
 import Header from './layout/Header';
-import Home from './content/home/Home';
 import Navbar from './navbar/Navbar';
+import Home from './content/home/Home';
 import Board from './content/board/Board';
 import Code from './content/code/Code';
 
@@ -27,7 +31,7 @@ const TextSpan = styled.span`
     }
 `;
 
-const ListGroup = styled(rs.ListGroup)`
+const ListGroupA = styled(ListGroup)`
     text-align: left !important;
     background-color: #192532;
     
@@ -103,7 +107,7 @@ const NavbarStyled = styled.div`
             transition: all 0.1s;
             transition-delay: 0.1s;
         }
-        &:hover ${ListGroup} {
+        &:hover ${ListGroupA} {
             visibility: visible;
             opacity: 100;
             max-height: none;
@@ -136,19 +140,19 @@ const MainWrapper = styled.div`
 
 const App = ({ NavbarStore }) => {
   let icon;
-  if (NavbarStore.isToggleSidebar) icon = fa.faArrowRight;
-  else icon = fa.faArrowLeft;
+  if (NavbarStore.isToggleSidebar) icon = faArrowRight;
+  else icon = faArrowLeft;
 
   return (
     <React.Fragment>
-      <Route path="/" render={() => (<Header icon={icon} />)} />
+      <Header icon={icon} />
       <NavbarStyled toggled={NavbarStore.isToggleSidebar}>
         <Navbar
           menus={[
             {
               id: 1,
               head: '게시판',
-              icon: fa.faClipboardList,
+              icon: faClipboardList,
               items: [
                 {
                   id: 1.1,
@@ -175,7 +179,7 @@ const App = ({ NavbarStore }) => {
             {
               id: 2,
               head: '데이터',
-              icon: fa.faDatabase,
+              icon: faDatabase,
               items: [
                 {
                   id: 2.1,
@@ -192,7 +196,7 @@ const App = ({ NavbarStore }) => {
             {
               id: 3,
               head: '장비',
-              icon: fa.faToolbox,
+              icon: faToolbox,
               items: [
                 {
                   id: 3.1,
@@ -214,7 +218,7 @@ const App = ({ NavbarStore }) => {
             {
               id: 4,
               head: '일정',
-              icon: fa.faCalendarAlt,
+              icon: faCalendarAlt,
               items: [
                 {
                   id: 4.1,
@@ -241,7 +245,7 @@ const App = ({ NavbarStore }) => {
             {
               id: 5,
               head: '설정',
-              icon: fa.faCog,
+              icon: faCog,
               items: [
                 {
                   id: 5.1,
@@ -270,27 +274,27 @@ const App = ({ NavbarStore }) => {
             <Route
               exact
               path="/"
-              render={({ match, history, location }) => <Home match={match} history={history} location={location} title="홈" icon={fa.faHome} />}
+              render={({ match, history, location }) => <Home match={match} history={history} location={location} title="홈" icon={faHome} />}
             />
 
             {/* BOARD */}
             <Route
               exact
               path="/board/all"
-              render={({ match, history, location }) => <Board match={match} history={history} location={location} title="전체" icon={fa.faGlobeAsia} />}
+              render={({ match, history, location }) => <Board match={match} history={history} location={location} title="전체" icon={faGlobeAsia} />}
             />
 
             {/* QNA */}
             <Route
               exact
               path="/board/qna"
-              render={({ match, history, location }) => <Board match={match} history={history} location={location} title="Q&A" icon={fa.faQuestionCircle} />}
+              render={({ match, history, location }) => <Board match={match} history={history} location={location} title="Q&A" icon={faQuestionCircle} />}
             />
             {/* Code */}
             <Route
               exact
               path="/setting/code"
-              render={({ match, history, location }) => <Code match={match} history={history} location={location} title="코드 관리" icon={fa.faCode} />}
+              render={({ match, history, location }) => <Code match={match} history={history} location={location} title="코드 관리" icon={faCode} />}
             />
           </Switch>
         </MainWrapper>
@@ -309,4 +313,4 @@ App.propTypes = {
 };
 
 
-export default inject('NavbarStore')((observer)(App));
+export default inject('NavbarStore')((withRouter)((observer)(App)));

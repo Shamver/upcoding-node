@@ -3,9 +3,11 @@ import {
   Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 import styled from 'styled-components';
-import * as fa from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell, faEnvelope, faCommentAlt, faComment, faUserFriends,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as mu from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
@@ -40,7 +42,7 @@ const MenuCircle = styled.span`
     }
 `;
 
-const MenuButtonCircle = styled(mu.ListItem)`
+const MenuButtonCircle = styled(ListItem)`
     background-color : #f7f7f7 !important;
     height : 39px;
     width : 39px !important;
@@ -193,21 +195,21 @@ const Notification = ({ HeaderStore }) => {
       <DropdownToggleCustom>
         <MenuButtonCircle button>
           <MenuIconCustomWrapper>
-            <MenuIcon icon={fa.faBell} />
+            <MenuIcon icon={faBell} />
           </MenuIconCustomWrapper>
         </MenuButtonCircle>
       </DropdownToggleCustom>
       <DropdownMenuAni right>
         <DropdownItemHeader>
           <Colorh6>
-            <MenuIcon icon={fa.faBell} />
+            <MenuIcon icon={faBell} />
             &nbsp;알림
           </Colorh6>
         </DropdownItemHeader>
         <DropDownItemCustom>
           <ImgDiv>
             <MenuCircleBell>
-              <MenuIcon icon={fa.faEnvelope} />
+              <MenuIcon icon={faEnvelope} />
             </MenuCircleBell>
           </ImgDiv>
           <Info>
@@ -220,7 +222,7 @@ const Notification = ({ HeaderStore }) => {
         <DropDownItemCustom>
           <ImgDiv className="media-img">
             <MenuCircleComment>
-              <MenuIcon icon={fa.faCommentAlt} />
+              <MenuIcon icon={faCommentAlt} />
             </MenuCircleComment>
           </ImgDiv>
           <Info>
@@ -233,7 +235,7 @@ const Notification = ({ HeaderStore }) => {
         <DropDownItemCustom>
           <ImgDiv className="media-img">
             <MenuCircleFriend>
-              <MenuIcon icon={fa.faUserFriends} />
+              <MenuIcon icon={faUserFriends} />
             </MenuCircleFriend>
           </ImgDiv>
           <Info>
@@ -246,7 +248,7 @@ const Notification = ({ HeaderStore }) => {
         <DropDownItemCustom>
           <ImgDiv className="media-img">
             <MenuCircleMessage>
-              <MenuIcon icon={fa.faComment} />
+              <MenuIcon icon={faComment} />
             </MenuCircleMessage>
           </ImgDiv>
           <Info>

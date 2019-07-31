@@ -1,5 +1,5 @@
 import React from 'react';
-import * as rs from 'reactstrap';
+import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
@@ -17,7 +17,7 @@ const LeftIcon = styled(FontAwesomeIcon)`
 
 const Board = ({ title, icon }) => (
   <React.Fragment>
-    <rs.Container fluid>
+    <Container fluid>
       <h4>
         <LeftIconSpan>
           <LeftIcon icon={icon} />
@@ -27,7 +27,7 @@ const Board = ({ title, icon }) => (
         {' '}
         <TitleSpan>게시판</TitleSpan>
       </h4>
-    </rs.Container>
+    </Container>
   </React.Fragment>
 );
 
