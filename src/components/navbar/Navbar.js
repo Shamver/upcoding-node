@@ -10,16 +10,16 @@ import NavItem from './NavItem';
 
 const TextSpan = styled.span`
     @media only screen and (max-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
-        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0.05s' : '0')}
+        visibility: ${({ toggled }) => (toggled === 'true' ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === 'true' ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === 'true' ? '0.05s' : '0')}
     }
     @media only screen and (min-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+        visibility: ${({ toggled }) => (toggled === 'true' ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === 'true' ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === 'true' ? '0' : '0.1s')}
     }
 `;
 
@@ -35,14 +35,14 @@ const LeftIconSpan = styled.span`
     vertical-align : sub;
     display: inline-block;
     height: 20px;
-    width: ${({ toggled }) => (toggled === true ? '35px' : '24px')};
+    width: ${({ toggled }) => (toggled === 'true' ? '35px' : '24px')};
     line-height: 25px;
     text-align: center;
     position: relative;
     transition: all 0.3s;
     left: 0;
     font-size: 18px;
-    padding-right: ${({ toggled }) => (toggled === true ? '2px' : '0')};
+    padding-right: ${({ toggled }) => (toggled === 'true' ? '2px' : '0')};
     margin-right: 14px;
 `;
 
@@ -93,7 +93,7 @@ const SideItemCol = styled(Col)`
     padding: 0;
     
     @media only screen and (max-width: 1200px){
-        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 100 : 0)}
         transition: opacity 0.2s;
         transition-delay: 0.08s;
     }
@@ -132,12 +132,12 @@ const Navbar = (props) => {
                 >
                   <LeftIconSpan
                     name="home"
-                    toggled={NavbarStore.isToggleSidebar}
+                    toggled={NavbarStore.isToggleSidebar.toString()}
                     aa={false}
                   >
                     <LeftIcon icon={faHome} name="home" />
                   </LeftIconSpan>
-                  <TextSpan toggled={NavbarStore.isToggleSidebar} name="home">홈</TextSpan>
+                  <TextSpan toggled={NavbarStore.isToggleSidebar.toString()} name="home">홈</TextSpan>
                 </CollapseButton>
               </SideItemCol>
               {items}

@@ -14,16 +14,16 @@ const CollapseA = styled(Collapse)`
 
 const TextSpan = styled.span`
     @media only screen and (max-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
-        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0.05s' : '0')}
+        visibility: ${({ toggled }) => (toggled === 'true' ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === 'true' ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === 'true' ? '0.05s' : '0')}
     }
     @media only screen and (min-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+        visibility: ${({ toggled }) => (toggled === 'true' ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === 'true' ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === 'true' ? '0' : '0.1s')}
     }
     
     
@@ -38,17 +38,17 @@ const RightIconSpan = styled.span`
     font-size: 17px;
     
     @media only screen and (max-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
-        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0.1s' : '0')}
+        visibility: ${({ toggled }) => (toggled === 'true' ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === 'true' ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === 'true' ? '0.1s' : '0')}
     }
     
     @media only screen and (min-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+        visibility: ${({ toggled }) => (toggled === 'true' ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === 'true' ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === 'true' ? '0' : '0.1s')}
     }
 `;
 
@@ -57,19 +57,19 @@ const ListGroupA = styled(ListGroup)`
     background-color: #192532;
     
     @media only screen and (max-width: 1200px){
-        max-height: ${({ toggled }) => (toggled === false ? 0 : 'none')}
-        visibility: ${({ toggled }) => (toggled === false ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === false ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === false ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
-        transition-delay: ${({ toggled }) => (toggled === false ? '0' : '0.1s')}
+        max-height: ${({ toggled }) => (toggled === 'false' ? 0 : 'none')}
+        visibility: ${({ toggled }) => (toggled === 'false' ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === 'false' ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === 'false' ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
+        transition-delay: ${({ toggled }) => (toggled === 'false' ? '0' : '0.1s')}
     }
     
     @media only screen and (min-width: 1200px) {
-        max-height: ${({ toggled }) => (toggled === true ? 0 : 'none')}
-        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === true ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+        max-height: ${({ toggled }) => (toggled === 'true' ? 0 : 'none')}
+        visibility: ${({ toggled }) => (toggled === 'true' ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === 'true' ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
+        transition-delay: ${({ toggled }) => (toggled === 'true' ? '0' : '0.1s')}
     }
 `;
 
@@ -114,14 +114,14 @@ const CollapseButton = styled(ListItem)`
 const LeftIconSpan = styled.span`
     display: inline-block;
     height: 20px;
-    width: ${({ toggled }) => (toggled === true ? '35px' : '24px')};
+    width: ${({ toggled }) => (toggled === 'true' ? '35px' : '24px')};
     line-height: 25px;
     text-align: center;
     position: relative;
     transition: all 0.3s;
     left: 0;
     font-size: 18px;
-    padding-right: ${({ toggled }) => (toggled === true ? '2px' : '0')};
+    padding-right: ${({ toggled }) => (toggled === 'true' ? '2px' : '0')};
     margin-right: 14px;
 `;
 
@@ -153,7 +153,7 @@ const SideItemCol = styled(Col)`
     padding: 0;
     
     @media only screen and (max-width: 1200px){
-        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        opacity: ${({ toggled }) => (toggled === 'true' ? 100 : 0)}
         transition: opacity 0.2s;
         transition-delay: 0.08s;
     }
@@ -192,12 +192,12 @@ const NavItem = (props) => {
     >
       <LeftIconSpan
         name={title}
-        toggled={NavbarStore.isToggleSidebar}
+        toggled={NavbarStore.isToggleSidebar.toString()}
       >
         <LeftIcon icon={icon} name={title} />
       </LeftIconSpan>
-      <TextSpan toggled={NavbarStore.isToggleSidebar} name={title}>{title}</TextSpan>
-      <RightIconSpan toggled={NavbarStore.isToggleSidebar} name={title}>
+      <TextSpan toggled={NavbarStore.isToggleSidebar.toString()} name={title}>{title}</TextSpan>
+      <RightIconSpan toggled={NavbarStore.isToggleSidebar.toString()} name={title}>
         <RightIcon icon={faChevronRight} name={title} />
       </RightIconSpan>
     </CollapseButton>
