@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   faClipboardList, faArrowRight, faArrowLeft, faDatabase, faToolbox,
-  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode,
+  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode , fas,
 } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { ListGroup } from 'reactstrap';
@@ -14,6 +16,10 @@ import Navbar from './navbar/Navbar';
 import Home from './content/home/Home';
 import Board from './content/board/Board';
 import Code from './content/code/Code';
+
+library.add(
+  fas, fab,
+);
 
 const TextSpan = styled.span`
     @media only screen and (max-width: 1200px){
@@ -142,6 +148,10 @@ const App = ({ NavbarStore }) => {
   let icon;
   if (NavbarStore.isToggleSidebar) icon = faArrowRight;
   else icon = faArrowLeft;
+
+  useEffect(() => {
+    NavbarStore.getSideMenuList();
+  });
 
   return (
     <React.Fragment>
@@ -294,7 +304,7 @@ const App = ({ NavbarStore }) => {
             <Route
               exact
               path="/setting/code"
-              render={({ match, history, location }) => <Code match={match} history={history} location={location} title="코드 관리" icon={faCode} />}
+              render={({ match, history, location }) => <Code match={match} history={history} location={location} title="코드 관리" icon={['fas', 'cog']} />}
             />
           </Switch>
         </MainWrapper>
@@ -309,6 +319,7 @@ App.propTypes = {
   }).isRequired,
   NavbarStore: PropTypes.shape({
     isToggleSidebar: PropTypes.bool.isRequired,
+    getSideMenuList: PropTypes.func.isRequired,
   }).isRequired,
 };
 

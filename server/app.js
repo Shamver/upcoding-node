@@ -6,12 +6,14 @@ const app = express();
 const api = require('./routes/index');
 const react = require('./routes/react');
 const user = require('./routes/user');
+const common = require('./routes/api/common');
 
 app.set('view engine', 'html');
 
 app.use(bodyParser.json());
 
 app.use('/api', api);
+app.use('/api', common);
 app.use('/user', user);
 app.use('/test/*', (req, res) => res.sendFile(path.join(__dirname, '..', 'build', 'index.html')));
 app.use('/', express.static(path.join(__dirname, '..', 'build')));
