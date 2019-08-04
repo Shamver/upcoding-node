@@ -8,6 +8,67 @@ import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import NavItem from './NavItem';
 
+const Navbar = (props) => {
+  const { menus, NavbarStore } = props;
+  const { selectedCollapse } = NavbarStore;
+  const items = menus.map(data => (
+    <NavItem
+      title={data.head}
+      icon={data.icon}
+      items={data.items}
+      key={data.id}
+    />
+  ));
+  const isOpen = selectedCollapse === 'home';
+  return (
+    <React.Fragment>
+      <div>
+        <NavRow>
+          <NavBody xs="12">
+            <Row>
+              <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
+                <CollapseButton
+                  button
+                  className={isOpen ? 'active' : ''}
+                  name="home"
+                  onClick={NavbarStore.onSelectCollapse}
+                >
+                  <LeftIconSpan
+                    name="home"
+                    toggled={NavbarStore.isToggleSidebar.toString()}
+                    aa={false}
+                  >
+                    <LeftIcon icon={faHome} name="home" />
+                  </LeftIconSpan>
+                  <TextSpan toggled={NavbarStore.isToggleSidebar.toString()} name="home">홈</TextSpan>
+                </CollapseButton>
+              </SideItemCol>
+              {items}
+            </Row>
+          </NavBody>
+        </NavRow>
+      </div>
+    </React.Fragment>
+  );
+};
+
+Navbar.propTypes = {
+  menus: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.object]),
+  ).isRequired,
+  NavbarStore: PropTypes.shape({
+    selectedCollapse: PropTypes.string.isRequired,
+    selectedSidebar: PropTypes.string.isRequired,
+    onSelectCollapse: PropTypes.func.isRequired,
+    onSelectSidebar: PropTypes.func.isRequired,
+    isToggleSidebar: PropTypes.bool,
+  }),
+};
+
+Navbar.defaultProps = {
+  NavbarStore: null,
+};
+
 const TextSpan = styled.span`
     @media only screen and (max-width: 1200px){
         visibility: ${({ toggled }) => (toggled === 'true' ? 'visible' : 'hidden')}
@@ -104,65 +165,5 @@ const SideItemCol = styled(Col)`
         opacity: 100;
     }
 `;
-
-const Navbar = (props) => {
-  const { menus, NavbarStore } = props;
-  const { selectedCollapse } = NavbarStore;
-  const items = menus.map(data => (
-    <NavItem
-      title={data.head}
-      icon={data.icon}
-      items={data.items}
-      key={data.id}
-    />
-  ));
-  const isOpen = selectedCollapse === 'home';
-  return (
-    <React.Fragment>
-      <div>
-        <NavRow>
-          <NavBody xs="12">
-            <Row>
-              <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
-                <CollapseButton
-                  button
-                  className={isOpen ? 'active' : ''}
-                  name="home"
-                  onClick={NavbarStore.onSelectCollapse}
-                >
-                  <LeftIconSpan
-                    name="home"
-                    toggled={NavbarStore.isToggleSidebar.toString()}
-                    aa={false}
-                  >
-                    <LeftIcon icon={faHome} name="home" />
-                  </LeftIconSpan>
-                  <TextSpan toggled={NavbarStore.isToggleSidebar.toString()} name="home">홈</TextSpan>
-                </CollapseButton>
-              </SideItemCol>
-              {items}
-            </Row>
-          </NavBody>
-        </NavRow>
-      </div>
-    </React.Fragment>
-  );
-};
-Navbar.propTypes = {
-  menus: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.object]),
-  ).isRequired,
-  NavbarStore: PropTypes.shape({
-    selectedCollapse: PropTypes.string.isRequired,
-    selectedSidebar: PropTypes.string.isRequired,
-    onSelectCollapse: PropTypes.func.isRequired,
-    onSelectSidebar: PropTypes.func.isRequired,
-    isToggleSidebar: PropTypes.bool,
-  }),
-};
-
-Navbar.defaultProps = {
-  NavbarStore: null,
-};
 
 export default inject('NavbarStore')(observer(Navbar));

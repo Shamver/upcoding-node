@@ -13,6 +13,79 @@ import avatar from '../../../resources/images/avatar-1.jpg';
 import avatar2 from '../../../resources/images/avatar-2.jpg';
 import avatar3 from '../../../resources/images/avatar-3.jpg';
 
+const Message = ({ HeaderStore }) => {
+  const { isMessageToggle } = HeaderStore.dropDownToggle;
+  return (
+    <DropdownInline isOpen={isMessageToggle} toggle={HeaderStore.onToggleDropDownMessage}>
+      <DropdownToggleCustom>
+        <MenuButtonCircle button>
+          <MenuIconCustomWrapper>
+            <MenuIcon icon={faEnvelope} />
+          </MenuIconCustomWrapper>
+        </MenuButtonCircle>
+      </DropdownToggleCustom>
+      <DropdownMenuAni right>
+        <DropdownItemHeader>
+          <Colorh6>
+            쪽지
+            <BadgeH5><BadgeA>745</BadgeA></BadgeH5>
+            {' '}
+          </Colorh6>
+        </DropdownItemHeader>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <Img src={avatar} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+              명지전문대 대장 윤은식
+            </Name>
+            <SubMessage>배진영, 개새끼야 뭐하냐? 피방 고? 명지전문대 내가 흔든다.</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <Img src={avatar2} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+              홍남수
+            </Name>
+            <SubMessage>맥주 고? 약술 고? 응암팟 고?</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <Img src={avatar3} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+              이수현
+            </Name>
+            <SubMessage>야동 품번추천좀. 야애니 추천좀ㅋㅋㅋㅋㅋ 개재밌더라</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <FooterMessage>모두 보기</FooterMessage>
+        </DropDownItemCustom>
+      </DropdownMenuAni>
+    </DropdownInline>
+  );
+};
+
+Message.propTypes = {
+  HeaderStore: PropTypes.shape({
+    onToggleDropDownMessage: PropTypes.func.isRequired,
+    dropDownToggle: PropTypes.shape({
+      isMessageToggle: PropTypes.bool.isRequired,
+    }),
+  }),
+};
+
+Message.defaultProps = {
+  HeaderStore: null,
+};
+
 const DropdownMenuAni = styled(DropdownMenu)`
     margin-top : 10px;
     width : 300px;
@@ -173,78 +246,5 @@ const MenuIconCustomWrapper = styled.div`
     line-height : 22px !important;
     display : block;
 `;
-
-const Message = ({ HeaderStore }) => {
-  const { isMessageToggle } = HeaderStore.dropDownToggle;
-  return (
-    <DropdownInline isOpen={isMessageToggle} toggle={HeaderStore.onToggleDropDownMessage}>
-      <DropdownToggleCustom>
-        <MenuButtonCircle button>
-          <MenuIconCustomWrapper>
-            <MenuIcon icon={faEnvelope} />
-          </MenuIconCustomWrapper>
-        </MenuButtonCircle>
-      </DropdownToggleCustom>
-      <DropdownMenuAni right>
-        <DropdownItemHeader>
-          <Colorh6>
-            쪽지
-            <BadgeH5><BadgeA>745</BadgeA></BadgeH5>
-            {' '}
-          </Colorh6>
-        </DropdownItemHeader>
-        <DropDownItemCustom>
-          <ImgDiv className="media-img">
-            <Img src={avatar} alt="" />
-          </ImgDiv>
-          <Info>
-            <Name>
-              명지전문대 대장 윤은식
-            </Name>
-            <SubMessage>배진영, 개새끼야 뭐하냐? 피방 고? 명지전문대 내가 흔든다.</SubMessage>
-          </Info>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <ImgDiv className="media-img">
-            <Img src={avatar2} alt="" />
-          </ImgDiv>
-          <Info>
-            <Name>
-              홍남수
-            </Name>
-            <SubMessage>맥주 고? 약술 고? 응암팟 고?</SubMessage>
-          </Info>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <ImgDiv className="media-img">
-            <Img src={avatar3} alt="" />
-          </ImgDiv>
-          <Info>
-            <Name>
-              이수현
-            </Name>
-            <SubMessage>야동 품번추천좀. 야애니 추천좀ㅋㅋㅋㅋㅋ 개재밌더라</SubMessage>
-          </Info>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <FooterMessage>모두 보기</FooterMessage>
-        </DropDownItemCustom>
-      </DropdownMenuAni>
-    </DropdownInline>
-  );
-};
-
-Message.propTypes = {
-  HeaderStore: PropTypes.shape({
-    onToggleDropDownMessage: PropTypes.func.isRequired,
-    dropDownToggle: PropTypes.shape({
-      isMessageToggle: PropTypes.bool.isRequired,
-    }),
-  }),
-};
-
-Message.defaultProps = {
-  HeaderStore: null,
-};
 
 export default inject('HeaderStore')(observer(Message));

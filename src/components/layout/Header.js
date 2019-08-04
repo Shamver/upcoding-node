@@ -11,6 +11,60 @@ import logoText from '../../resources/images/LOGO.png';
 import Notification from './dropdown/Notification';
 import Profile from './dropdown/Profile';
 
+const Header = ({ icon, NavbarStore }) => (
+  <SectionHeader>
+    <AllLogoWrapper>
+      <LogoWrapper>
+        <LogoImage src={logo} />
+      </LogoWrapper>
+      <LogoTextWrapper>
+        <LogoTextImage src={logoText} />
+      </LogoTextWrapper>
+    </AllLogoWrapper>
+    <CollapseButton>
+      <MenuButtonCircle button onClick={NavbarStore.onToggleSidebar}>
+        <MenuIconCustomWrapper>
+          <MenuIconCustom icon={icon} />
+        </MenuIconCustomWrapper>
+      </MenuButtonCircle>
+    </CollapseButton>
+    <LeftNav>
+      <SearchBoxList>
+        <SearchBox placeholder="검색할 키워드를 입력해주세요.." />
+        <SearchIcon icon={faSearch} />
+      </SearchBoxList>
+      <List>
+        <CollapseButton>
+          <Message />
+        </CollapseButton>
+      </List>
+      <List>
+        <CollapseButton>
+          <Notification />
+        </CollapseButton>
+      </List>
+      <List>
+        <CollapseButton>
+          <Profile />
+        </CollapseButton>
+      </List>
+    </LeftNav>
+
+  </SectionHeader>
+);
+
+Header.propTypes = {
+  icon: PropTypes.shape({
+  }).isRequired,
+  NavbarStore: PropTypes.shape({
+    onToggleSidebar: PropTypes.func.isRequired,
+  }),
+};
+
+Header.defaultProps = {
+  NavbarStore: null,
+};
+
 const LogoImage = styled.img`
     width : 40px;
     cursor : pointer;
@@ -154,59 +208,5 @@ const MenuIconCustomWrapper = styled.div`
     line-height : 19px !important;
     display : block;
 `;
-
-const Header = ({ icon, NavbarStore }) => (
-  <SectionHeader>
-    <AllLogoWrapper>
-      <LogoWrapper>
-        <LogoImage src={logo} />
-      </LogoWrapper>
-      <LogoTextWrapper>
-        <LogoTextImage src={logoText} />
-      </LogoTextWrapper>
-    </AllLogoWrapper>
-    <CollapseButton>
-      <MenuButtonCircle button onClick={NavbarStore.onToggleSidebar}>
-        <MenuIconCustomWrapper>
-          <MenuIconCustom icon={icon} />
-        </MenuIconCustomWrapper>
-      </MenuButtonCircle>
-    </CollapseButton>
-    <LeftNav>
-      <SearchBoxList>
-        <SearchBox placeholder="검색할 키워드를 입력해주세요.." />
-        <SearchIcon icon={faSearch} />
-      </SearchBoxList>
-      <List>
-        <CollapseButton>
-          <Message />
-        </CollapseButton>
-      </List>
-      <List>
-        <CollapseButton>
-          <Notification />
-        </CollapseButton>
-      </List>
-      <List>
-        <CollapseButton>
-          <Profile />
-        </CollapseButton>
-      </List>
-    </LeftNav>
-
-  </SectionHeader>
-);
-
-Header.propTypes = {
-  icon: PropTypes.shape({
-  }).isRequired,
-  NavbarStore: PropTypes.shape({
-    onToggleSidebar: PropTypes.func.isRequired,
-  }),
-};
-
-Header.defaultProps = {
-  NavbarStore: null,
-};
 
 export default inject('HeaderStore', 'NavbarStore')(observer(Header));

@@ -5,33 +5,6 @@ import { ListItem } from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-const ListItemA = styled(ListItem)`
-    padding : 0px 0px !important;
-    height : 42px;
-`;
-
-const ListLink = styled(Link)`
-    color: #99abb4 !important;
-    font-size: 16px;
-    text-decoration: none !important;
-    outline: none;
-    box-shadow: none;
-    display: block !important;
-    padding-left : 65px; 
-    height: 100% !important;
-    transition: all 0.3s;
-    line-height : 42px;
-    width : 100%;
-    ${ListItemA}.active & {
-        color: white !important;
-        background: none !important;
-    }
-    &:hover {
-        color: white !important;
-        text-decoration: none !important;
-    }
-`;
-
 const NavItemInner = (props) => {
   const { name, to, NavbarStore } = props;
   const { selectedSidebar } = NavbarStore;
@@ -63,5 +36,32 @@ NavItemInner.propTypes = {
 NavItemInner.defaultProps = {
   NavbarStore: null,
 };
+
+const ListItemA = styled(ListItem)`
+    padding : 0px 0px !important;
+    height : 42px;
+`;
+
+const ListLink = styled(Link)`
+    color: #99abb4 !important;
+    font-size: 16px;
+    text-decoration: none !important;
+    outline: none;
+    box-shadow: none;
+    display: block !important;
+    padding-left : 65px; 
+    height: 100% !important;
+    transition: all 0.3s;
+    line-height : 42px;
+    width : 100%;
+    ${ListItemA}.active & {
+        color: white !important;
+        background: none !important;
+    }
+    &:hover {
+        color: white !important;
+        text-decoration: none !important;
+    }
+`;
 
 export default inject('NavbarStore')((observer)(NavItemInner));

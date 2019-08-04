@@ -11,6 +11,98 @@ import { ListItem } from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
+const Notification = ({ HeaderStore }) => {
+  const { isNotificationToggle } = HeaderStore.dropDownToggle;
+  return (
+    <DropdownInline isOpen={isNotificationToggle} toggle={HeaderStore.onToggleDropDownNoti}>
+      <DropdownToggleCustom>
+        <MenuButtonCircle button>
+          <MenuIconCustomWrapper>
+            <MenuIcon icon={faBell} />
+          </MenuIconCustomWrapper>
+        </MenuButtonCircle>
+      </DropdownToggleCustom>
+      <DropdownMenuAni right>
+        <DropdownItemHeader>
+          <Colorh6>
+            <MenuIcon icon={faBell} />
+            &nbsp;알림
+          </Colorh6>
+        </DropdownItemHeader>
+        <DropDownItemCustom>
+          <ImgDiv>
+            <MenuCircleBell>
+              <MenuIcon icon={faEnvelope} />
+            </MenuCircleBell>
+          </ImgDiv>
+          <Info>
+            <Name>
+              5개의 새로운 쪽지
+            </Name>
+            <SubMessage>4분 전</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <MenuCircleComment>
+              <MenuIcon icon={faCommentAlt} />
+            </MenuCircleComment>
+          </ImgDiv>
+          <Info>
+            <Name>
+              4개의 새로운 댓글
+            </Name>
+            <SubMessage>12분 전</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <MenuCircleFriend>
+              <MenuIcon icon={faUserFriends} />
+            </MenuCircleFriend>
+          </ImgDiv>
+          <Info>
+            <Name>
+              3개의 새로운 친구 요청
+            </Name>
+            <SubMessage>1일 전</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <ImgDiv className="media-img">
+            <MenuCircleMessage>
+              <MenuIcon icon={faComment} />
+            </MenuCircleMessage>
+          </ImgDiv>
+          <Info>
+            <Name>
+              2개의 새로운 채팅
+            </Name>
+            <SubMessage>12분 전</SubMessage>
+          </Info>
+        </DropDownItemCustom>
+        <DropdownItemFooter>
+          <FooterMessage>모든 알림 확인하기</FooterMessage>
+        </DropdownItemFooter>
+      </DropdownMenuAni>
+    </DropdownInline>
+  );
+};
+
+Notification.propTypes = {
+  HeaderStore: PropTypes.shape({
+    onToggleDropDownNoti: PropTypes.func.isRequired,
+    dropDownToggle: PropTypes.shape({
+      isNotificationToggle: PropTypes.bool.isRequired,
+    }),
+  }),
+};
+
+Notification.defaultProps = {
+  HeaderStore: null,
+};
+
+
 const DropdownMenuAni = styled(DropdownMenu)`
     margin-top : 10px;
     position : absolute;
@@ -188,84 +280,6 @@ const MenuCircleFriend = styled(MenuCircle)`
     color : white;
 `;
 
-const Notification = ({ HeaderStore }) => {
-  const { isNotificationToggle } = HeaderStore.dropDownToggle;
-  return (
-    <DropdownInline isOpen={isNotificationToggle} toggle={HeaderStore.onToggleDropDownNoti}>
-      <DropdownToggleCustom>
-        <MenuButtonCircle button>
-          <MenuIconCustomWrapper>
-            <MenuIcon icon={faBell} />
-          </MenuIconCustomWrapper>
-        </MenuButtonCircle>
-      </DropdownToggleCustom>
-      <DropdownMenuAni right>
-        <DropdownItemHeader>
-          <Colorh6>
-            <MenuIcon icon={faBell} />
-            &nbsp;알림
-          </Colorh6>
-        </DropdownItemHeader>
-        <DropDownItemCustom>
-          <ImgDiv>
-            <MenuCircleBell>
-              <MenuIcon icon={faEnvelope} />
-            </MenuCircleBell>
-          </ImgDiv>
-          <Info>
-            <Name>
-              5개의 새로운 쪽지
-            </Name>
-            <SubMessage>4분 전</SubMessage>
-          </Info>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <ImgDiv className="media-img">
-            <MenuCircleComment>
-              <MenuIcon icon={faCommentAlt} />
-            </MenuCircleComment>
-          </ImgDiv>
-          <Info>
-            <Name>
-              4개의 새로운 댓글
-            </Name>
-            <SubMessage>12분 전</SubMessage>
-          </Info>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <ImgDiv className="media-img">
-            <MenuCircleFriend>
-              <MenuIcon icon={faUserFriends} />
-            </MenuCircleFriend>
-          </ImgDiv>
-          <Info>
-            <Name>
-              3개의 새로운 친구 요청
-            </Name>
-            <SubMessage>1일 전</SubMessage>
-          </Info>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <ImgDiv className="media-img">
-            <MenuCircleMessage>
-              <MenuIcon icon={faComment} />
-            </MenuCircleMessage>
-          </ImgDiv>
-          <Info>
-            <Name>
-              2개의 새로운 채팅
-            </Name>
-            <SubMessage>12분 전</SubMessage>
-          </Info>
-        </DropDownItemCustom>
-        <DropdownItemFooter>
-          <FooterMessage>모든 알림 확인하기</FooterMessage>
-        </DropdownItemFooter>
-      </DropdownMenuAni>
-    </DropdownInline>
-  );
-};
-
 const MenuCircleMessage = styled(MenuCircle)`
     background-color: #ab8ce4 !important;
     border : 0;
@@ -276,19 +290,5 @@ const MenuIconCustomWrapper = styled.div`
     line-height : 22px !important;
     display : block;
 `;
-
-Notification.propTypes = {
-  HeaderStore: PropTypes.shape({
-    onToggleDropDownNoti: PropTypes.func.isRequired,
-    dropDownToggle: PropTypes.shape({
-      isNotificationToggle: PropTypes.bool.isRequired,
-    }),
-  }),
-};
-
-Notification.defaultProps = {
-  HeaderStore: null,
-};
-
 
 export default inject('HeaderStore')(observer(Notification));

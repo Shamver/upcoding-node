@@ -5,21 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
 import CodeGroup from './CodeGroup';
 
-const TitleSpan = styled.span`
-    font-size: 0.9rem;
-    color: gray;
-`;
-const LeftIconSpan = styled.span`
-    text-align: center;
-`;
-const LeftIcon = styled(FontAwesomeIcon)`
-    vertical-align: sub;
-`;
-const H4 = styled.h4`
-    margin-bottom : 20px;
-`;
-
-
 const Code = ({ icon, title }) => (
   <React.Fragment>
     <Container fluid>
@@ -43,5 +28,19 @@ Code.propTypes = {
   icon: PropTypes.shape({
   }).isRequired,
 };
+
+const TitleSpan = styled.span`
+    font-size: 0.9rem;
+    color: gray;
+`;
+const LeftIconSpan = styled.span`
+    text-align: center;
+`;
+const LeftIcon = styled(FontAwesomeIcon)`
+    vertical-align: sub;
+`;
+const H4 = styled.h4`
+    margin-bottom : 20px;
+`;
 
 export default Code;

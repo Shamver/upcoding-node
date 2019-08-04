@@ -4,17 +4,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
 
-const TitleSpan = styled.span`
-    font-size: 0.9rem;
-    color: gray;
-`;
-const LeftIconSpan = styled.span`
-    text-align: center;
-`;
-const LeftIcon = styled(FontAwesomeIcon)`
-    vertical-align: sub;
-`;
-
 const Board = ({ title, icon }) => (
   <React.Fragment>
     <Container fluid>
@@ -36,5 +25,16 @@ Board.propTypes = {
   icon: PropTypes.shape({
   }).isRequired,
 };
+
+const TitleSpan = styled.span`
+    font-size: 0.9rem;
+    color: gray;
+`;
+const LeftIconSpan = styled.span`
+    text-align: center;
+`;
+const LeftIcon = styled(FontAwesomeIcon)`
+    vertical-align: sub;
+`;
 
 export default Board;

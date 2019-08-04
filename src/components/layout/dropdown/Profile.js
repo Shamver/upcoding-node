@@ -12,6 +12,72 @@ import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import avatar from '../../../resources/images/avatar.jpg';
 
+const Profile = ({ HeaderStore }) => {
+  const { isProfileToggle } = HeaderStore.dropDownToggle;
+  return (
+    <DropdownInline isOpen={isProfileToggle} toggle={HeaderStore.onToggleDropDownProfile}>
+      <DropdownToggleCustom>
+        <MenuButtonCircle button>
+          <ProfileImg src={avatar} />
+        </MenuButtonCircle>
+      </DropdownToggleCustom>
+      <DropdownMenuAni right>
+        <DropDownItemHeader>
+          <ImgDiv className="media-img">
+            <Img src={avatar} alt="" />
+          </ImgDiv>
+          <Info>
+            <Name>
+                        배진영
+            </Name>
+            <SubMessage>Front-End 개발자</SubMessage>
+          </Info>
+        </DropDownItemHeader>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={faCog} />
+                    &nbsp;&nbsp;설정
+          </CustomInner>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={faUser} />
+                    &nbsp;&nbsp;프로필
+          </CustomInner>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={faEnvelope} />
+                    &nbsp;&nbsp;메일
+                    &nbsp;&nbsp;
+
+            {' '}
+            <BadgeA>2</BadgeA>
+          </CustomInner>
+        </DropDownItemCustom>
+        <DropDownItemCustom>
+          <CustomInner>
+            <MenuIcon icon={faSignOutAlt} />
+                    &nbsp;&nbsp;로그아웃
+          </CustomInner>
+        </DropDownItemCustom>
+      </DropdownMenuAni>
+    </DropdownInline>
+  );
+};
+Profile.propTypes = {
+  HeaderStore: PropTypes.shape({
+    onToggleDropDownProfile: PropTypes.func.isRequired,
+    dropDownToggle: PropTypes.shape({
+      isProfileToggle: PropTypes.bool.isRequired,
+    }),
+  }),
+};
+
+Profile.defaultProps = {
+  HeaderStore: null,
+};
+
 const DropdownMenuAni = styled(DropdownMenu)`
     margin-top : 13px;
     width : 250px;
@@ -161,71 +227,5 @@ const BadgeA = styled(Badge)`
     background-color: #03A9F4 !important;
     border-radius : 10rem;
 `;
-
-const Profile = ({ HeaderStore }) => {
-  const { isProfileToggle } = HeaderStore.dropDownToggle;
-  return (
-    <DropdownInline isOpen={isProfileToggle} toggle={HeaderStore.onToggleDropDownProfile}>
-      <DropdownToggleCustom>
-        <MenuButtonCircle button>
-          <ProfileImg src={avatar} />
-        </MenuButtonCircle>
-      </DropdownToggleCustom>
-      <DropdownMenuAni right>
-        <DropDownItemHeader>
-          <ImgDiv className="media-img">
-            <Img src={avatar} alt="" />
-          </ImgDiv>
-          <Info>
-            <Name>
-                        배진영
-            </Name>
-            <SubMessage>Front-End 개발자</SubMessage>
-          </Info>
-        </DropDownItemHeader>
-        <DropDownItemCustom>
-          <CustomInner>
-            <MenuIcon icon={faCog} />
-                    &nbsp;&nbsp;설정
-          </CustomInner>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <CustomInner>
-            <MenuIcon icon={faUser} />
-                    &nbsp;&nbsp;프로필
-          </CustomInner>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <CustomInner>
-            <MenuIcon icon={faEnvelope} />
-                    &nbsp;&nbsp;메일
-                    &nbsp;&nbsp;
-
-            {' '}
-            <BadgeA>2</BadgeA>
-          </CustomInner>
-        </DropDownItemCustom>
-        <DropDownItemCustom>
-          <CustomInner>
-            <MenuIcon icon={faSignOutAlt} />
-                    &nbsp;&nbsp;로그아웃
-          </CustomInner>
-        </DropDownItemCustom>
-      </DropdownMenuAni>
-    </DropdownInline>
-  );
-};
-Profile.propTypes = {
-  HeaderStore: PropTypes.shape({
-    onToggleDropDownProfile: PropTypes.func.isRequired,
-    dropDownToggle: PropTypes.shape({
-      isProfileToggle: PropTypes.bool.isRequired,
-    }),
-  }),
-};
-
-Profile.defaultProps = {
-  HeaderStore: null,
-};
 
 export default inject('HeaderStore')(observer(Profile));

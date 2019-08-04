@@ -4,14 +4,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
 
-const LeftIconSpan = styled.span`
-    text-align: center;
-`;
-
-const LeftIcon = styled(FontAwesomeIcon)`
-    vertical-align: sub;
-`;
-
 const Home = ({ icon, title }) => (
   <React.Fragment>
     <Container fluid>
@@ -30,5 +22,13 @@ Home.propTypes = {
   icon: PropTypes.shape({
   }).isRequired,
 };
+
+const LeftIconSpan = styled.span`
+    text-align: center;
+`;
+
+const LeftIcon = styled(FontAwesomeIcon)`
+    vertical-align: sub;
+`;
 
 export default Home;

@@ -11,10 +11,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
-const TypographyFont = styled(Typography)`
-    font-family : inherit !important;
-`;
-
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
   counter += 1;
@@ -369,5 +365,9 @@ EnhancedTable.propTypes = {
     tableWrapper: PropTypes.string,
   }).isRequired,
 };
+
+const TypographyFont = styled(Typography)`
+    font-family : inherit !important;
+`;
 
 export default withStyles(styles)(EnhancedTable);

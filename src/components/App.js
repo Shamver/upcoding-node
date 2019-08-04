@@ -21,129 +21,6 @@ library.add(
   fas, fab,
 );
 
-const TextSpan = styled.span`
-    @media only screen and (max-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
-        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0.05s' : '0')}
-    }
-    
-    @media only screen and (min-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
-    }
-`;
-
-const ListGroupA = styled(ListGroup)`
-    text-align: left !important;
-    background-color: #192532;
-    
-    
-    @media only screen and (max-width: 1200px){
-        max-height: ${({ toggled }) => (toggled === false ? 0 : 'none')}
-        visibility: ${({ toggled }) => (toggled === false ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === false ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === false ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
-        transition-delay: ${({ toggled }) => (toggled === false ? '0' : '0.1s')}
-    }
-    
-    @media only screen and (min-width: 1200px) {
-        max-height: ${({ toggled }) => (toggled === true ? 0 : 'none')}
-        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === true ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
-    }
-`;
-
-const RightIconSpan = styled.span`
-    height: 20px;
-    width: 24px;
-    line-height: 25px;
-    position: absolute;
-    right: 10px;
-    font-size: 17px;
-    
-    
-    @media only screen and (max-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
-        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0.1s' : '0')}
-    }
-    
-    @media only screen and (min-width: 1200px){
-        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
-        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
-        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
-        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
-    }
-`;
-
-const NavbarStyled = styled.div`
-
-    position: fixed !important;
-    z-index : 1000;
-    left: 0 !important;
-    top : 65px !important;
-    transition: width 0.3s;
-    
-    @media only screen and (max-width: 1199px) {
-        width: ${({ toggled }) => (toggled === true ? '250px' : '0px')};
-        overflow: ${({ toggled }) => (toggled === true ? 'auto' : 'hidden')};
-    }
-    
-    @media only screen and (min-width: 1200px) {
-        width: ${({ toggled }) => (toggled === true ? '64px' : '250px')};
-        &:hover {
-            width: 250px;
-        }
-        &:hover ${RightIconSpan} {
-            visibility: visible;
-            opacity: 100;
-            transition: all 0.1s;
-            transition-delay: 0.1s;
-        }
-        &:hover ${TextSpan} {
-            visibility: visible;
-            opacity: 100;
-            transition: all 0.1s;
-            transition-delay: 0.1s;
-        }
-        &:hover ${ListGroupA} {
-            visibility: visible;
-            opacity: 100;
-            max-height: none;
-            transition: visibility opacity max-height 0.2s;
-            transition-delay: 0.1s;
-        }
-    }
-    
-    height: 100%;
-    background-color: #1a2942;
-`;
-
-const MainComponent = styled.div`
-    @media only screen and (max-width: 1200px) {
-    }
-    
-    @media only screen and (min-width: 1200px) {
-        padding-left: ${({ toggled }) => (toggled === true ? '70px' : '250px')} !important;
-    }
-    transition: all 0.3s;
-`;
-
-const MainWrapper = styled.div`
-    padding: 90px 15px 25px 15px;
-    font-family : 'Jeju Gothic', 'Roboto';
-    background-color : rgb(241, 242, 247);
-    min-height : 100vh;
-    height : 100%;
-`;
-
 const App = ({ NavbarStore }) => {
   let icon;
   if (NavbarStore.isToggleSidebar) icon = faArrowRight;
@@ -323,5 +200,127 @@ App.propTypes = {
   }).isRequired,
 };
 
+const TextSpan = styled.span`
+    @media only screen and (max-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0.05s' : '0')}
+    }
+    
+    @media only screen and (min-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+    }
+`;
+
+const ListGroupA = styled(ListGroup)`
+    text-align: left !important;
+    background-color: #192532;
+    
+    
+    @media only screen and (max-width: 1200px){
+        max-height: ${({ toggled }) => (toggled === false ? 0 : 'none')}
+        visibility: ${({ toggled }) => (toggled === false ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === false ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === false ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
+        transition-delay: ${({ toggled }) => (toggled === false ? '0' : '0.1s')}
+    }
+    
+    @media only screen and (min-width: 1200px) {
+        max-height: ${({ toggled }) => (toggled === true ? 0 : 'none')}
+        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === true ? 'visibility opacity max-height 0.1s' : 'visibility opacity max-height 0.3s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+    }
+`;
+
+const RightIconSpan = styled.span`
+    height: 20px;
+    width: 24px;
+    line-height: 25px;
+    position: absolute;
+    right: 10px;
+    font-size: 17px;
+    
+    
+    @media only screen and (max-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'visible' : 'hidden')}
+        opacity: ${({ toggled }) => (toggled === true ? 100 : 0)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0.1s' : '0')}
+    }
+    
+    @media only screen and (min-width: 1200px){
+        visibility: ${({ toggled }) => (toggled === true ? 'hidden' : 'visible')}
+        opacity: ${({ toggled }) => (toggled === true ? 0 : 100)}
+        transition: ${({ toggled }) => (toggled === true ? 'all 0.1s' : 'all 0.1s')}
+        transition-delay: ${({ toggled }) => (toggled === true ? '0' : '0.1s')}
+    }
+`;
+
+const NavbarStyled = styled.div`
+
+    position: fixed !important;
+    z-index : 1000;
+    left: 0 !important;
+    top : 65px !important;
+    transition: width 0.3s;
+    
+    @media only screen and (max-width: 1199px) {
+        width: ${({ toggled }) => (toggled === true ? '250px' : '0px')};
+        overflow: ${({ toggled }) => (toggled === true ? 'auto' : 'hidden')};
+    }
+    
+    @media only screen and (min-width: 1200px) {
+        width: ${({ toggled }) => (toggled === true ? '64px' : '250px')};
+        &:hover {
+            width: 250px;
+        }
+        &:hover ${RightIconSpan} {
+            visibility: visible;
+            opacity: 100;
+            transition: all 0.1s;
+            transition-delay: 0.1s;
+        }
+        &:hover ${TextSpan} {
+            visibility: visible;
+            opacity: 100;
+            transition: all 0.1s;
+            transition-delay: 0.1s;
+        }
+        &:hover ${ListGroupA} {
+            visibility: visible;
+            opacity: 100;
+            max-height: none;
+            transition: visibility opacity max-height 0.2s;
+            transition-delay: 0.1s;
+        }
+    }
+    
+    height: 100%;
+    background-color: #1a2942;
+`;
+
+const MainComponent = styled.div`
+    @media only screen and (max-width: 1200px) {
+    }
+    
+    @media only screen and (min-width: 1200px) {
+        padding-left: ${({ toggled }) => (toggled === true ? '70px' : '250px')} !important;
+    }
+    transition: all 0.3s;
+`;
+
+const MainWrapper = styled.div`
+    padding: 90px 15px 25px 15px;
+    font-family : 'Jeju Gothic', 'Roboto';
+    background-color : rgb(241, 242, 247);
+    min-height : 100vh;
+    height : 100%;
+`;
 
 export default inject('NavbarStore')((withRouter)((observer)(App)));

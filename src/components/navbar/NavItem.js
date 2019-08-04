@@ -8,6 +8,75 @@ import { observer, inject } from 'mobx-react';
 import { Collapse, Col, ListGroup } from 'reactstrap';
 import NavItemInner from './NavItemInner';
 
+const NavItem = (props) => {
+  const {
+    title, NavbarStore, items, icon,
+  } = props;
+  const { selectedCollapse } = NavbarStore;
+
+  const isOpen = selectedCollapse === title;
+  const item = items.map(data => (
+    <NavItemInner
+      name={data.name}
+      to={data.to}
+      key={data.id}
+      icon={icon}
+    />
+  ));
+
+  const CollapseButtonRtn = (
+    <CollapseButton
+      button
+      name={title}
+      onClick={NavbarStore.onSelectCollapse}
+      disabled={false}
+      className={isOpen ? 'active' : ''}
+    >
+      <LeftIconSpan
+        name={title}
+        toggled={NavbarStore.isToggleSidebar.toString()}
+      >
+        <LeftIcon icon={icon} name={title} />
+      </LeftIconSpan>
+      <TextSpan toggled={NavbarStore.isToggleSidebar.toString()} name={title}>{title}</TextSpan>
+      <RightIconSpan toggled={NavbarStore.isToggleSidebar.toString()} name={title}>
+        <RightIcon icon={faChevronRight} name={title} />
+      </RightIconSpan>
+    </CollapseButton>
+  );
+
+  return (
+    <React.Fragment>
+      <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
+        {CollapseButtonRtn}
+        <CollapseA isOpen={isOpen} toggled={NavbarStore.isToggleSidebar.toString()}>
+          <ListGroupA toggled={NavbarStore.isToggleSidebar.toString()}>
+            {item}
+          </ListGroupA>
+        </CollapseA>
+      </SideItemCol>
+    </React.Fragment>
+  );
+};
+
+NavItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.object]),
+  ).isRequired,
+  icon: PropTypes.shape({
+  }).isRequired,
+  NavbarStore: PropTypes.shape({
+    isToggleSidebar: PropTypes.bool.isRequired,
+    onSelectCollapse: PropTypes.func.isRequired,
+    selectedCollapse: PropTypes.string.isRequired,
+  }),
+};
+
+NavItem.defaultProps = {
+  NavbarStore: null,
+};
+
 const CollapseA = styled(Collapse)`
     margin: 0;
 `;
@@ -164,75 +233,5 @@ const SideItemCol = styled(Col)`
         opacity: 100;
     }
 `;
-
-
-const NavItem = (props) => {
-  const {
-    title, NavbarStore, items, icon,
-  } = props;
-  const { selectedCollapse } = NavbarStore;
-
-  const isOpen = selectedCollapse === title;
-  const item = items.map(data => (
-    <NavItemInner
-      name={data.name}
-      to={data.to}
-      key={data.id}
-      icon={icon}
-    />
-  ));
-
-  const CollapseButtonRtn = (
-    <CollapseButton
-      button
-      name={title}
-      onClick={NavbarStore.onSelectCollapse}
-      disabled={false}
-      className={isOpen ? 'active' : ''}
-    >
-      <LeftIconSpan
-        name={title}
-        toggled={NavbarStore.isToggleSidebar.toString()}
-      >
-        <LeftIcon icon={icon} name={title} />
-      </LeftIconSpan>
-      <TextSpan toggled={NavbarStore.isToggleSidebar.toString()} name={title}>{title}</TextSpan>
-      <RightIconSpan toggled={NavbarStore.isToggleSidebar.toString()} name={title}>
-        <RightIcon icon={faChevronRight} name={title} />
-      </RightIconSpan>
-    </CollapseButton>
-  );
-
-  return (
-    <React.Fragment>
-      <SideItemCol toggled={NavbarStore.isToggleSidebar.toString()} xs={12}>
-        {CollapseButtonRtn}
-        <CollapseA isOpen={isOpen} toggled={NavbarStore.isToggleSidebar.toString()}>
-          <ListGroupA toggled={NavbarStore.isToggleSidebar.toString()}>
-            {item}
-          </ListGroupA>
-        </CollapseA>
-      </SideItemCol>
-    </React.Fragment>
-  );
-};
-
-NavItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.object]),
-  ).isRequired,
-  icon: PropTypes.shape({
-  }).isRequired,
-  NavbarStore: PropTypes.shape({
-    isToggleSidebar: PropTypes.bool.isRequired,
-    onSelectCollapse: PropTypes.func.isRequired,
-    selectedCollapse: PropTypes.string.isRequired,
-  }),
-};
-
-NavItem.defaultProps = {
-  NavbarStore: null,
-};
 
 export default inject('NavbarStore')(observer(NavItem));
