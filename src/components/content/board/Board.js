@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 const TitleSpan = styled.span`
     font-size: 0.9rem;

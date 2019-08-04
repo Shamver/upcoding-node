@@ -4,7 +4,7 @@ import { ListItem } from '@material-ui/core';
 import styled from 'styled-components';
 import { faHome } from '@fortawesome/free-solid-svg-icons/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import NavItem from './NavItem';
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Table, TableBody, TableCell, TableHead, TablePagination, TableRow,

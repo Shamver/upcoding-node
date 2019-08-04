@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListItem } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
 const DropdownMenuAni = styled(DropdownMenu)`

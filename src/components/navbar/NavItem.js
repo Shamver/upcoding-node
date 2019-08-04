@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListItem } from '@material-ui/core';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { observer, inject } from 'mobx-react';
 import { Collapse, Col, ListGroup } from 'reactstrap';

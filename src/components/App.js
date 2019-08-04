@@ -3,11 +3,11 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   faClipboardList, faArrowRight, faArrowLeft, faDatabase, faToolbox,
-  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode , fas,
+  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode, fas,
 } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { ListGroup } from 'reactstrap';
 

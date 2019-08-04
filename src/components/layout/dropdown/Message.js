@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListItem } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
 import avatar from '../../../resources/images/avatar-1.jpg';
