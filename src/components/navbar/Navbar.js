@@ -106,13 +106,13 @@ const SideItemCol = styled(Col)`
 `;
 
 const Navbar = (props) => {
-  const { menus, NavbarStore } = props;
+  const { NavbarStore } = props;
   const { selectedCollapse } = NavbarStore;
-  const items = menus.map(data => (
+  const items = NavbarStore.menus.map(data => (
     <NavItem
-      title={data.head}
+      title={data.name}
       icon={data.icon}
-      items={data.items}
+      items={data.childMenus}
       key={data.id}
     />
   ));
@@ -149,15 +149,13 @@ const Navbar = (props) => {
   );
 };
 Navbar.propTypes = {
-  menus: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.object]),
-  ).isRequired,
   NavbarStore: PropTypes.shape({
     selectedCollapse: PropTypes.string.isRequired,
     selectedSidebar: PropTypes.string.isRequired,
     onSelectCollapse: PropTypes.func.isRequired,
     onSelectSidebar: PropTypes.func.isRequired,
     isToggleSidebar: PropTypes.bool,
+    menus: PropTypes.array.isRequired,
   }),
 };
 

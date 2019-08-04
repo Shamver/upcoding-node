@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   faClipboardList, faArrowRight, faArrowLeft, faDatabase, faToolbox,
-  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode , fas,
+  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode, fas,
 } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -157,125 +157,7 @@ const App = ({ NavbarStore }) => {
     <React.Fragment>
       <Header icon={icon} />
       <NavbarStyled toggled={NavbarStore.isToggleSidebar}>
-        <Navbar
-          menus={[
-            {
-              id: 1,
-              head: '게시판',
-              icon: faClipboardList,
-              items: [
-                {
-                  id: 1.1,
-                  name: '전체',
-                  to: '/board/all',
-                },
-                {
-                  id: 1.2,
-                  name: '자유',
-                  to: '/board/free',
-                },
-                {
-                  id: 1.3,
-                  name: '코딩',
-                  to: '/board/coding',
-                },
-                {
-                  id: 1.4,
-                  name: 'Q&A',
-                  to: '/board/qna',
-                },
-              ],
-            },
-            {
-              id: 2,
-              head: '데이터',
-              icon: faDatabase,
-              items: [
-                {
-                  id: 2.1,
-                  name: '데이터-1',
-                  to: '/data/1',
-                },
-                {
-                  id: 2.2,
-                  name: '데이터-2',
-                  to: '/data/2',
-                },
-              ],
-            },
-            {
-              id: 3,
-              head: '장비',
-              icon: faToolbox,
-              items: [
-                {
-                  id: 3.1,
-                  name: '장비-1',
-                  to: '/device/1',
-                },
-                {
-                  id: 3.2,
-                  name: '장비-2',
-                  to: '/device/2',
-                },
-                {
-                  id: 3.3,
-                  name: '장비-3',
-                  to: '/device/3',
-                },
-              ],
-            },
-            {
-              id: 4,
-              head: '일정',
-              icon: faCalendarAlt,
-              items: [
-                {
-                  id: 4.1,
-                  name: '일정-1',
-                  to: '/plan/1',
-                },
-                {
-                  id: 4.2,
-                  name: '일정-2',
-                  to: '/plan/2',
-                },
-                {
-                  id: 4.3,
-                  name: '일정-3',
-                  to: '/plan/3',
-                },
-                {
-                  id: 4.4,
-                  name: '일정-4',
-                  to: '/plan/4',
-                },
-              ],
-            },
-            {
-              id: 5,
-              head: '설정',
-              icon: faCog,
-              items: [
-                {
-                  id: 5.1,
-                  name: '코드 관리',
-                  to: '/setting/code',
-                },
-                {
-                  id: 5.2,
-                  name: '이메일-2',
-                  to: '/email/2',
-                },
-                {
-                  id: 5.3,
-                  name: '이메일-3',
-                  to: '/email/3',
-                },
-              ],
-            },
-          ]}
-        />
+        <Navbar />
       </NavbarStyled>
       <MainComponent toggled={NavbarStore.isToggleSidebar}>
         <MainWrapper>
@@ -320,8 +202,8 @@ App.propTypes = {
   NavbarStore: PropTypes.shape({
     isToggleSidebar: PropTypes.bool.isRequired,
     getSideMenuList: PropTypes.func.isRequired,
+    menus: PropTypes.array.isRequired,
   }).isRequired,
 };
-
 
 export default inject('NavbarStore')((withRouter)((observer)(App)));

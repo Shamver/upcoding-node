@@ -176,7 +176,7 @@ const NavItem = (props) => {
   const item = items.map(data => (
     <NavItemInner
       name={data.name}
-      to={data.to}
+      to={data.url}
       key={data.id}
       icon={icon}
     />
@@ -222,8 +222,9 @@ NavItem.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object]),
   ).isRequired,
-  icon: PropTypes.shape({
-  }).isRequired,
+  icon: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string]),
+  ).isRequired,
   NavbarStore: PropTypes.shape({
     isToggleSidebar: PropTypes.bool.isRequired,
     onSelectCollapse: PropTypes.func.isRequired,
