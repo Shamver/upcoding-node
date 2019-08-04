@@ -1,15 +1,8 @@
 import { observable, action } from 'mobx';
 import axios from 'axios';
-import history from '../history';
 
-class NavbarStore {
-  @observable selectedCollapse = 'home';
-
-  @observable selectedSidebar = '';
-
-  @observable isToggleSidebar = false;
-
-  @observable menus = {};
+class CodeGroupStore {
+  @observable selectedCodeGroup = '';
 
   @action getSideMenuList = () => {
     axios.post('/api/menu', {}).then((res) => {
@@ -37,8 +30,8 @@ class NavbarStore {
     }
 
     if (name === 'home') {
-      const { history } = this.props;
-      history.push('/');
+      // const { history } = this.props;
+      // history.push('/');
     }
 
     if (this.selectedCollapse === name) this.selectedCollapse = '';
@@ -54,4 +47,4 @@ class NavbarStore {
   };
 }
 
-export default new NavbarStore();
+export default new CodeGroupStore();

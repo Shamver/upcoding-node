@@ -194,9 +194,12 @@ const MyEnhancedTableToolbar = (withStyles(toolbarStyles)(EnhancedTableToolbar))
 const styles = () => ({
   root: {
     width: '100%',
+    marginRight: '1rem',
+    marginBottom: '1rem',
+    display: 'inline-block',
   },
   table: {
-    minWidth: 700,
+    width: '100%',
     maxHeight: 800,
   },
   tableWrapper: {
@@ -227,7 +230,7 @@ class EnhancedTable extends React.Component {
         createData('Oreo', 437),
       ],
       page: 0,
-      rowsPerPage: 12,
+      rowsPerPage: 10,
     };
 
     handleRequestSort = (event, property) => {

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
 import CodeGroup from './CodeGroup';
+import CodeList from './CodeList';
 
 const Code = ({ icon, title }) => (
   <React.Fragment>
@@ -17,16 +18,23 @@ const Code = ({ icon, title }) => (
         {' '}
         <TitleSpan>설정</TitleSpan>
       </H4>
-      <CodeGroup />
-      <CodeGroup />
+      <div className="row">
+        <div className="col-sm-12 col-lg-6">
+          <CodeGroup />
+        </div>
+        <div className="col-sm-12 col-lg-6">
+          <CodeList />
+        </div>
+      </div>
     </Container>
   </React.Fragment>
 );
 
 Code.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.shape({
-  }).isRequired,
+  icon: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string]),
+  ).isRequired,
 };
 
 const TitleSpan = styled.span`
