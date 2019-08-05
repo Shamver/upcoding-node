@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import {
-  faClipboardList, faArrowRight, faArrowLeft, faDatabase, faToolbox,
-  faCog, faHome, faCalendarAlt, faGlobeAsia, faQuestionCircle, faCode, fas,
+  faArrowRight, faArrowLeft,
+  faHome, faGlobeAsia, faQuestionCircle, fas,
 } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -13,9 +13,11 @@ import { ListGroup } from 'reactstrap';
 
 import Header from './layout/Header';
 import Navbar from './navbar/Navbar';
+
 import Home from './content/home/Home';
 import Board from './content/board/Board';
 import Code from './content/code/Code';
+import Menu from './content/setting/Menu';
 
 library.add(
   fas, fab,
@@ -138,7 +140,6 @@ const MainComponent = styled.div`
 
 const MainWrapper = styled.div`
     padding: 90px 15px 25px 15px;
-    font-family : 'Jeju Gothic', 'Roboto';
     background-color : rgb(241, 242, 247);
     min-height : 100vh;
     height : 100%;
@@ -187,6 +188,12 @@ const App = ({ NavbarStore }) => {
               exact
               path="/setting/code"
               render={({ match, history, location }) => <Code match={match} history={history} location={location} title="코드 관리" icon={['fas', 'cog']} />}
+            />
+            {/* Code */}
+            <Route
+              exact
+              path="/setting/menu"
+              render={({ match, history, location }) => <Menu match={match} history={history} location={location} title="메뉴 관리" icon={['fas', 'bars']} />}
             />
           </Switch>
         </MainWrapper>

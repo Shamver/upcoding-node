@@ -40,6 +40,9 @@ const AllLogoWrapper = styled.div`
     float : left;
     display : flex;
     width : 270px;
+    & * {
+      font-family : 'Roboto' !important;
+    }
     @media (max-width: 992px) {
         display : none;
     }
@@ -53,16 +56,24 @@ const SectionHeader = styled.div`
     height : 65px;
     border-bottom: 1px solid #E9EAEC;
     color : #8A8A8A;
-    
     @media (max-width: 992px) {
         padding : 0px 15px;
     }
 `;
 
+const CollapseButtonA = styled.a`
+    padding : 0 6px;
+    line-height: calc(65px - -3px);
+    min-height: calc(65px - -3px);
+    & * {
+      font-family : 'Roboto' !important;
+    }
+`;
+
 const CollapseButton = styled.a`
     padding : 0 6px;
-    line-height: calc(65px - 3px);
-    min-height: calc(65px - 3px);
+    line-height: calc(65px - -3px);
+    min-height: calc(65px - -3px);
 `;
 
 const MenuButtonCircle = styled(ListItem)`
@@ -151,7 +162,7 @@ const MenuIconCustom = styled(MenuIcon)`
 `;
 
 const MenuIconCustomWrapper = styled.div`
-    line-height : 19px !important;
+    line-height : 22px !important;
     display : block;
 `;
 
@@ -165,13 +176,13 @@ const Header = ({ icon, NavbarStore }) => (
         <LogoTextImage src={logoText} />
       </LogoTextWrapper>
     </AllLogoWrapper>
-    <CollapseButton>
+    <CollapseButtonA>
       <MenuButtonCircle button onClick={NavbarStore.onToggleSidebar}>
         <MenuIconCustomWrapper>
           <MenuIconCustom icon={icon} />
         </MenuIconCustomWrapper>
       </MenuButtonCircle>
-    </CollapseButton>
+    </CollapseButtonA>
     <LeftNav>
       <SearchBoxList>
         <SearchBox placeholder="검색할 키워드를 입력해주세요.." />

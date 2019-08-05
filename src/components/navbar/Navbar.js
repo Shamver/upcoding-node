@@ -133,7 +133,6 @@ const Navbar = (props) => {
                   <LeftIconSpan
                     name="home"
                     toggled={NavbarStore.isToggleSidebar.toString()}
-                    aa={false}
                   >
                     <LeftIcon icon={faHome} name="home" />
                   </LeftIconSpan>

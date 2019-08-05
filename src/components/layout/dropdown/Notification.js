@@ -89,6 +89,10 @@ const DropdownToggleCustom = styled(DropdownToggle)`
         border : 0;
         color : inherit !important;
     }
+    
+    & * {
+      font-family : 'Roboto' !important;
+    }
 `;
 
 const DropdownItemHeader = styled(DropdownItem)`
@@ -273,7 +277,7 @@ const MenuCircleMessage = styled(MenuCircle)`
 `;
 
 const MenuIconCustomWrapper = styled.div`
-    line-height : 22px !important;
+    line-height : 24px !important;
     display : block;
 `;
 

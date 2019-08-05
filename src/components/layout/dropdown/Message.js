@@ -74,6 +74,9 @@ const DropdownToggleCustom = styled(DropdownToggle)`
         border : 0;
         color : inherit !important;
     }
+    & * {
+      font-family : 'Roboto' !important;
+    }
 `;
 
 const BadgeH5 = styled.h5`
@@ -170,8 +173,7 @@ const Img = styled.img`
 `;
 
 const MenuIconCustomWrapper = styled.div`
-    line-height : 22px !important;
-    display : block;
+    line-height : 24px !important;
 `;
 
 const Message = ({ HeaderStore }) => {
