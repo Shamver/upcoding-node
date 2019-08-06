@@ -1,68 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# UpCoding 
 
-## Available Scripts
+UpCoding은 동료와 함께 전공실력을 늘리자는 차원에서 시작된 프로젝트입니다. 최신 트렌드의 여러 기술들을 반영하고, 최대한 컨벤션을 맞춰 협업의 효율을 높이며, 실무와 동일하게 작업하려고 노력중입니다.
+<br>
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+## 프로젝트 개요
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+이 프로젝트는 코딩 커뮤니티를 지향하고 있습니다. 코딩, 프로그래밍에 관한 것이라면, 어느것이든 공유할 수 있고, 포스팅할 수 있습니다. 자신이 만든 웹 게임을 사이트 내에 반영하여 유저들이 즐기게 할 수 있고, 코드의 피드백도 받을 수 있게하며, 스터디 모집, Q&A, 채팅, 세미나 등 여러 커뮤니티 기능을 제작할 예정입니다.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+<br>
+<br>
 
-### `npm test`
+## 프로젝트 주제 선정 배경
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. 대부분의 IT 지식 구글링 정보들이 외국어이다.
 
-### `npm run build`
+2. 개인이 만든 게임이나 기능을 여러 유저들이 사용해보고, 피드백을 받을만한 사이트가 필요하다.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. 프로젝트에 대한 전반적인 계획 수립, 형상 관리, 파일 공유, Work Flow, 역할 분담을 동시에 할 수 있는 사이트가 필요하다.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+   <br>
+   <br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Target
 
-### `npm run eject`
+- 초기 : 개발 입문자 - 영어에 약하고 원하는 정보를 찾을 수 있는 능력이 부족하다.
+- 그 이후 : 개발 입문자 & 숙련된 개발자 - 초기부터 사용하고 있는 개발자들을 중심으로 꾸준히 사이트 규모를 늘려나가며, 많은 수의 질문과 답변을 기반으로 더 많은 개발자들을 모은다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br>
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 개발환경
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- node v10.16.0
+- MariaDB
+- CRAv2 (create-react-app v2)
+- IDE ( WebStorm )
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br>
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 사용한 기술 스택 및 라이브러리
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- react
+- code-splitting
+- express
+- mobx
+- react-router
+- styled-components
+- reactstrap
+- material-ui
+- axios
+- SPA
+- react-hooks
+- mysql
+- prop-types
+- nodeJs
+- es6
+- es-lint (airbnb)
+- customize-cra
+- babel
+- webpack
+- http-proxy-middleware
+- npm-run-all
