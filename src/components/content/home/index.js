@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
 
-const Board = ({ title, icon }) => (
+const Index = ({ icon, title }) => (
   <React.Fragment>
     <Container fluid>
       <h4>
@@ -13,28 +13,22 @@ const Board = ({ title, icon }) => (
         </LeftIconSpan>
         &nbsp;&nbsp;
         {title}
-        {' '}
-        <TitleSpan>게시판</TitleSpan>
       </h4>
     </Container>
   </React.Fragment>
 );
-
-Board.propTypes = {
+Index.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.shape({
   }).isRequired,
 };
 
-const TitleSpan = styled.span`
-    font-size: 0.9rem;
-    color: gray;
-`;
 const LeftIconSpan = styled.span`
     text-align: center;
 `;
+
 const LeftIcon = styled(FontAwesomeIcon)`
     vertical-align: sub;
 `;
 
-export default Board;
+export default Index;

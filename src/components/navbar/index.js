@@ -6,9 +6,9 @@ import { faHome } from '@fortawesome/free-solid-svg-icons/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import NavItem from './NavItem';
+import NavItem from './Item';
 
-const Navbar = (props) => {
+const Index = (props) => {
   const { menus, NavbarStore } = props;
   const { selectedCollapse } = NavbarStore;
   const items = menus.map(data => (
@@ -52,7 +52,7 @@ const Navbar = (props) => {
   );
 };
 
-Navbar.propTypes = {
+Index.propTypes = {
   menus: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object]),
   ).isRequired,
@@ -65,7 +65,7 @@ Navbar.propTypes = {
   }),
 };
 
-Navbar.defaultProps = {
+Index.defaultProps = {
   NavbarStore: null,
 };
 
@@ -166,4 +166,4 @@ const SideItemCol = styled(Col)`
     }
 `;
 
-export default inject('NavbarStore')(observer(Navbar));
+export default inject('NavbarStore')(observer(Index));

@@ -9,9 +9,9 @@ import { ListItem } from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
-import avatar from '../../../resources/images/avatar-1.jpg';
-import avatar2 from '../../../resources/images/avatar-2.jpg';
-import avatar3 from '../../../resources/images/avatar-3.jpg';
+import avatar from '../../../../resources/images/avatar-1.jpg';
+import avatar2 from '../../../../resources/images/avatar-2.jpg';
+import avatar3 from '../../../../resources/images/avatar-3.jpg';
 
 const Message = ({ HeaderStore }) => {
   const { isMessageToggle } = HeaderStore.dropDownToggle;

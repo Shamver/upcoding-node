@@ -6,9 +6,9 @@ import * as PropTypes from 'prop-types';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { observer, inject } from 'mobx-react';
 import { Collapse, Col, ListGroup } from 'reactstrap';
-import NavItemInner from './NavItemInner';
+import NavItemInner from './ItemInner';
 
-const NavItem = (props) => {
+const Item = (props) => {
   const {
     title, NavbarStore, items, icon,
   } = props;
@@ -59,7 +59,7 @@ const NavItem = (props) => {
   );
 };
 
-NavItem.propTypes = {
+Item.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object]),
@@ -73,7 +73,7 @@ NavItem.propTypes = {
   }),
 };
 
-NavItem.defaultProps = {
+Item.defaultProps = {
   NavbarStore: null,
 };
 
@@ -234,4 +234,4 @@ const SideItemCol = styled(Col)`
     }
 `;
 
-export default inject('NavbarStore')(observer(NavItem));
+export default inject('NavbarStore')(observer(Item));

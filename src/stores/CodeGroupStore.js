@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import axios from 'axios';
+// store/index.js
 
 class CodeGroupStore {
   @observable selectedCodeGroup = '';

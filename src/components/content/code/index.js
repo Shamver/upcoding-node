@@ -3,10 +3,10 @@ import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
-import CodeGroup from './CodeGroup';
-import CodeList from './CodeList';
+import CodeGroup from './Group';
+import CodeList from './List';
 
-const Code = ({ icon, title }) => (
+const Index = ({ icon, title }) => (
   <React.Fragment>
     <Container fluid>
       <H4>
@@ -30,7 +30,7 @@ const Code = ({ icon, title }) => (
   </React.Fragment>
 );
 
-Code.propTypes = {
+Index.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string]),
@@ -51,4 +51,4 @@ const H4 = styled.h4`
     margin-bottom : 20px;
 `;
 
-export default Code;
+export default Index;

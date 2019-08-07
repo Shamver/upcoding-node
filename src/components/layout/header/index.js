@@ -6,12 +6,12 @@ import { ListItem } from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import Message from './dropdown/Message';
-import logo from '../../resources/images/shamver_upcoding.png';
-import logoText from '../../resources/images/LOGO.png';
+import logo from '../../../resources/images/shamver_upcoding.png';
+import logoText from '../../../resources/images/LOGO.png';
 import Notification from './dropdown/Notification';
 import Profile from './dropdown/Profile';
 
-const Header = ({ icon, NavbarStore }) => (
+const Index = ({ icon, NavbarStore }) => (
   <SectionHeader>
     <AllLogoWrapper>
       <LogoWrapper>
@@ -53,7 +53,7 @@ const Header = ({ icon, NavbarStore }) => (
   </SectionHeader>
 );
 
-Header.propTypes = {
+Index.propTypes = {
   icon: PropTypes.shape({
   }).isRequired,
   NavbarStore: PropTypes.shape({
@@ -61,7 +61,7 @@ Header.propTypes = {
   }),
 };
 
-Header.defaultProps = {
+Index.defaultProps = {
   NavbarStore: null,
 };
 
@@ -209,4 +209,4 @@ const MenuIconCustomWrapper = styled.div`
     display : block;
 `;
 
-export default inject('HeaderStore', 'NavbarStore')(observer(Header));
+export default inject('HeaderStore', 'NavbarStore')(observer(Index));

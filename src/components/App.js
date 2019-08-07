@@ -11,11 +11,11 @@ import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { ListGroup } from 'reactstrap';
 
-import Header from './layout/Header';
-import Navbar from './navbar/Navbar';
-import Home from './content/home/Home';
-import Board from './content/board/Board';
-import Code from './content/code/Code';
+import Header from './layout/header';
+import Navbar from './navbar';
+import Index from './content/home';
+import Index from './content/board';
+import Index from './content/code';
 
 library.add(
   fas, fab,
@@ -161,27 +161,27 @@ const App = ({ NavbarStore }) => {
             <Route
               exact
               path="/"
-              render={({ match, history, location }) => <Home match={match} history={history} location={location} title="홈" icon={faHome} />}
+              render={({ match, history, location }) => <Index match={match} history={history} location={location} title="홈" icon={faHome} />}
             />
 
             {/* BOARD */}
             <Route
               exact
               path="/board/all"
-              render={({ match, history, location }) => <Board match={match} history={history} location={location} title="전체" icon={faGlobeAsia} />}
+              render={({ match, history, location }) => <Index match={match} history={history} location={location} title="전체" icon={faGlobeAsia} />}
             />
 
             {/* QNA */}
             <Route
               exact
               path="/board/qna"
-              render={({ match, history, location }) => <Board match={match} history={history} location={location} title="Q&A" icon={faQuestionCircle} />}
+              render={({ match, history, location }) => <Index match={match} history={history} location={location} title="Q&A" icon={faQuestionCircle} />}
             />
             {/* Code */}
             <Route
               exact
               path="/setting/code"
-              render={({ match, history, location }) => <Code match={match} history={history} location={location} title="코드 관리" icon={['fas', 'cog']} />}
+              render={({ match, history, location }) => <Index match={match} history={history} location={location} title="코드 관리" icon={['fas', 'cog']} />}
             />
           </Switch>
         </MainWrapper>

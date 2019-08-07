@@ -5,7 +5,7 @@ import { ListItem } from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-const NavItemInner = (props) => {
+const ItemInner = (props) => {
   const { name, to, NavbarStore } = props;
   const { selectedSidebar } = NavbarStore;
   const isOpen = selectedSidebar === name;
@@ -23,7 +23,7 @@ const NavItemInner = (props) => {
   );
 };
 
-NavItemInner.propTypes = {
+ItemInner.propTypes = {
   name: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
   NavbarStore: PropTypes.shape({
@@ -33,7 +33,7 @@ NavItemInner.propTypes = {
   }),
 };
 
-NavItemInner.defaultProps = {
+ItemInner.defaultProps = {
   NavbarStore: null,
 };
 
@@ -64,4 +64,4 @@ const ListLink = styled(Link)`
     }
 `;
 
-export default inject('NavbarStore')((observer)(NavItemInner));
+export default inject('NavbarStore')((observer)(ItemInner));

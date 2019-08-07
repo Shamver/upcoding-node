@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListItem } from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import avatar from '../../../resources/images/avatar.jpg';
+import avatar from '../../../../resources/images/avatar.jpg';
 
 const Profile = ({ HeaderStore }) => {
   const { isProfileToggle } = HeaderStore.dropDownToggle;
