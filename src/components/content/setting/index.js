@@ -3,7 +3,7 @@ import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as PropTypes from 'prop-types';
-import MenuCollapse from './MenuCollapse';
+import MenuCollapse from './Collapse';
 
 const TitleSpan = styled.span`
     font-size: 0.9rem;
@@ -20,7 +20,7 @@ const H4 = styled.h4`
 `;
 
 
-const Menu = ({ icon, title }) => (
+const Index = ({ icon, title }) => (
   <React.Fragment>
     <Container fluid>
       <H4>
@@ -37,11 +37,11 @@ const Menu = ({ icon, title }) => (
   </React.Fragment>
 );
 
-Menu.propTypes = {
+Index.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string]),
   ).isRequired,
 };
 
-export default Menu;
+export default Index;

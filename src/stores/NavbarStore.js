@@ -63,8 +63,7 @@ class NavbarStore {
     }
 
     if (name === 'home') {
-      // const { history } = this.props;
-      // history.push('/');
+      // console.log(this.history);
     }
 
     if (this.selectedCollapse === name) this.selectedCollapse = '';

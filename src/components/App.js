@@ -17,7 +17,7 @@ import Navbar from './navbar/Navbar';
 import Home from './content/home/Home';
 import Board from './content/board/Board';
 import Code from './content/code/Code';
-import Menu from './content/setting/Menu';
+import Index from './content/setting';
 
 library.add(
   fas, fab,
@@ -193,7 +193,7 @@ const App = ({ NavbarStore }) => {
             <Route
               exact
               path="/setting/menu"
-              render={({ match, history, location }) => <Menu match={match} history={history} location={location} title="메뉴 관리" icon={['fas', 'bars']} />}
+              render={({ match, history, location }) => <Index match={match} history={history} location={location} title="메뉴 관리" icon={['fas', 'bars']} />}
             />
           </Switch>
         </MainWrapper>

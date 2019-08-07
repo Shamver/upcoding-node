@@ -9,16 +9,15 @@ import AddIcon from '@material-ui/icons/Add';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
-import MenuDialog from './MenuDialog';
+import * as Proptypes from 'prop-types';
+import MenuDialog from './Dialog';
 
 const ListRoot = styled(List)`
   width : '100%';
   background-color : white;
 `;
 
-const NestListItem = styled(ListItem)`
-  padding-left: 32px !important;
-`;
+
 
 const FabRight = styled(Fab)`
   float : right;
@@ -28,7 +27,7 @@ const FabRight = styled(Fab)`
   margin-top: 10px !important;
 `;
 
-const MenuCollapse = ({ MenuStore }) => (
+const Collapse = ({ MenuStore }) => (
   <React.Fragment>
     <ListRoot
       component="nav"
@@ -44,26 +43,25 @@ const MenuCollapse = ({ MenuStore }) => (
         </ListSubheader>
       )}
     >
-      <ListItem button onClick={MenuStore.onToggleCollapse}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="게시판" />
-        {MenuStore.isCollapseOpen ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-      <Collapse in={MenuStore.isCollapseOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <NestListItem button>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="자유" />
-          </NestListItem>
-        </List>
-      </Collapse>
+
+
     </ListRoot>
-    <MenuDialog open={MenuStore.isDialogOpen} onClose={MenuStore.onCloseDialog} />
+    <MenuDialog />
   </React.Fragment>
 );
 
-export default inject('MenuStore')((observer)(MenuCollapse));
+Collapse.propTypes = {
+  MenuStore: Proptypes.shape({
+    isCollapseOpen: Proptypes.bool.isRequired,
+    isDialogOpen: Proptypes.bool.isRequired,
+    onCloseDialog: Proptypes.func.isRequired,
+    onToggleCollapse: Proptypes.func.isRequired,
+    onOpenDialog: Proptypes.func.isRequired,
+  }),
+};
+
+Collapse.defaultProps = {
+  MenuStore: null,
+};
+
+export default inject('MenuStore')((observer)(Collapse));
