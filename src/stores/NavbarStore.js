@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import axios from 'axios';
+
 import history from '../history';
 
 class NavbarStore {
@@ -37,7 +38,6 @@ class NavbarStore {
     }
 
     if (name === 'home') {
-      const { history } = this.props;
       history.push('/');
     }
 

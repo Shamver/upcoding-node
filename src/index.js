@@ -2,18 +2,17 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import history from './history';
 import * as serviceWorker from './serviceWorker';
 import stores from './stores';
 import App from './components/App';
 
-import history from './history';
-
 ReactDOM.render((
   <Provider {...stores}>
-    <BrowserRouter>
-      <Route path="/" render={() => <App history={history} />} />
-    </BrowserRouter>
+    <Router history={history}>
+      <App />
+    </Router>
   </Provider>
 ), document.getElementById('root'));
 

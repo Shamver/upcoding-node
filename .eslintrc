@@ -4,10 +4,7 @@
     "node": true,
     "es6": true
   },
-  "rules": {
-    "react/jsx-filename-extension": [0],
-    "linebreak-style": 0,
-  },
+  "rules": { "react/jsx-filename-extension": [0] },
   "plugins": [
     "react",
     "jsx-a11y",
